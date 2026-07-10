@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel de Visualização Jurídica - Contestação SulAmérica</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            50: '#f0f4f8',
+                            100: '#d9e2ec',
+                            200: '#bcccdc',
+                            300: '#9fb3c8',
+                            400: '#829ab1',
+                            500: '#627d98',
+                            600: '#486581',
+                            700: '#334e68',
+                            800: '#102a43',
+                            900: '#0b1b2d',
+                        },
+                        amber: {
+                            500: '#d97706',
+                            600: '#b45309',
+                            700: '#78350f',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 3px;
+        }
+        .dark .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #475569;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 dark:bg-navy-900 text-slate-800 dark:text-slate-100 min-h-screen flex flex-col transition-colors duration-200">
+
+    <!-- TOP HEADER BAR -->
+    <header class="border-b border-slate-200 dark:border-navy-800 bg-white dark:bg-navy-850 sticky top-0 z-40 shadow-sm backdrop-blur-md bg-opacity-95 dark:bg-opacity-95">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-wrap items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+                <div class="p-2 bg-navy-800 text-white rounded-lg shadow-md">
+                    <i class="fa-solid fa-scale-balanced text-xl"></i>
+                </div>
+                <div>
+                    <h1 class="text-lg font-bold text-navy-800 dark:text-white tracking-tight flex items-center gap-2">
+                        SulAmérica Saúde <span class="text-xs px-2 py-0.5 bg-amber-100 dark:bg-amber-900/40 text-amber-800 dark:text-amber-300 rounded font-normal uppercase tracking-wider">Defesa Atuarial</span>
+                    </h1>
+                    <p class="text-xs text-slate-500 dark:text-slate-400">Processo Digital nº 1031357-64.2026.8.13.0702 • Comarca de Uberlândia</p>
+                </div>
+            </div>
+            
+            <div class="flex items-center gap-3">
+                <!-- Theme Toggle -->
+                <button onclick="toggleDarkMode()" class="p-2 text-slate-500 hover:text-navy-800 dark:text-slate-400 dark:hover:text-white rounded-lg hover:bg-slate-100 dark:hover:bg-navy-800 transition" title="Alternar Modo Escuro/Claro">
+                    <i id="theme-icon" class="fa-solid fa-moon text-lg"></i>
+                </button>
+                <div class="h-6 w-px bg-slate-200 dark:bg-navy-800"></div>
+                <!-- Action Button -->
+                <button onclick="openModal('modal-info')" class="text-xs bg-navy-800 hover:bg-navy-700 text-white dark:bg-slate-100 dark:hover:bg-slate-200 dark:text-navy-900 font-semibold py-2 px-3.5 rounded-lg shadow transition flex items-center gap-2">
+                    <i class="fa-solid fa-file-invoice"></i> Ficha Técnica
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN APP WRAPPER -->
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col gap-6">
+        
+        <!-- HEADER METADATA & GENERAL SYLLABUS -->
+        <section class="bg-white dark:bg-navy-850 rounded-xl p-5 border border-slate-200 dark:border-navy-800 shadow-sm transition-colors duration-200">
+            <div class="flex items-start gap-4">
+                <div class="p-3 bg-slate-100 dark:bg-navy-800 text-navy-600 dark:text-navy-300 rounded-lg shrink-0 mt-1">
+                    <i class="fa-solid fa-gavel text-2xl"></i>
+                </div>
+                <div class="space-y-2">
+                    <span class="text-[10px] font-bold text-amber-600 dark:text-amber-400 uppercase tracking-widest block">Ementa Orientadora da Peça</span>
+                    <h2 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white leading-tight">
+                        DIREITO CIVIL E REGULATÓRIO. SAÚDE SUPLEMENTAR. AÇÃO REVISIONAL DE CLÁUSULAS FINANCEIRAS C/C REPETIÇÃO DE INDÉBITO. PLANO COLETIVO EMPRESARIAL (PME).
+                    </h2>
+                    <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed max-w-5xl">
+                        Alegação de falso coletivo fundada em núcleo familiar restrito. Ilegitimidade ativa dos beneficiários isolados. Inépcia da inicial. Prescrição trienal. Validade do negócio jurídico. Impossibilidade de transmutação contratual. Legalidade dos reajustes técnicos (<span class="italic font-semibold">pool de risco</span>) e etários.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- TWO-COLUMN WORKSPACE -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+            
+            <!-- LEFT COLUMN: INDEX & RADIO BUTTON SELECTORS -->
+            <div class="lg:col-span-5 flex flex-col gap-4">
+                
+                <!-- Search and Stats -->
+                <div class="bg-white dark:bg-navy-850 p-4 rounded-xl border border-slate-200 dark:border-navy-800 shadow-sm flex items-center justify-between gap-3">
+                    <div class="relative flex-1">
+                        <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+                        <input type="text" id="search-input" onkeyup="filterItems()" placeholder="Filtrar teses jurídicas..." class="w-full pl-9 pr-4 py-1.5 text-xs bg-slate-100 dark:bg-navy-850 border border-slate-200 dark:border-navy-750 rounded-lg text-slate-800 dark:text-slate-200 focus:outline-none focus:border-navy-600 focus:ring-1 focus:ring-navy-600 transition" />
+                    </div>
+                    <span id="items-count" class="text-[10px] font-semibold text-slate-500 bg-slate-100 dark:bg-navy-800 px-2 py-1 rounded">10 Teses</span>
+                </div>
+
+                <!-- Radio Cards Container -->
+                <div id="radio-cards-container" class="space-y-3 max-h-[640px] overflow-y-auto pr-1 custom-scrollbar">
+                    <!-- Cards will be generated by JS -->
+                </div>
+            </div>
+
+            <!-- RIGHT COLUMN: DETAILED ANALYSIS PANEL -->
+            <div class="lg:col-span-7 bg-white dark:bg-navy-850 rounded-xl border border-slate-200 dark:border-navy-800 shadow-md min-h-[500px] flex flex-col sticky top-20 transition-colors duration-200">
+                
+                <!-- Top Status Header of Detail Pane -->
+                <div class="border-b border-slate-150 dark:border-navy-800 px-6 py-4 flex items-center justify-between bg-slate-50/50 dark:bg-navy-850/50">
+                    <div class="flex items-center gap-2">
+                        <span id="detail-tag" class="text-[10px] font-bold text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/40 px-2.5 py-0.5 rounded border border-amber-200/50 dark:border-amber-900/50">TESE 1</span>
+                        <span class="text-xs text-slate-400 dark:text-slate-500">| Desdobramento Jurídico & Atuarial</span>
+                    </div>
+                    <!-- Copy button -->
+                    <button onclick="copyCurrentTese()" class="text-xs text-navy-700 hover:text-navy-900 dark:text-slate-300 dark:hover:text-white flex items-center gap-1.5 px-2.5 py-1 rounded border border-slate-200 dark:border-navy-700 hover:bg-slate-100 dark:hover:bg-navy-800 transition active:scale-95" title="Copiar Tese de Defesa Completa">
+                        <i class="fa-regular fa-copy"></i> Copiar Tese
+                    </button>
+                </div>
+
+                <!-- Dynamic Content Area -->
+                <div id="detail-content" class="p-6 flex-1 flex flex-col gap-5 overflow-y-auto max-h-[650px] custom-scrollbar">
+                    <!-- Populated dynamically via JS -->
+                </div>
+                
+                <!-- Footer Info Panel -->
+                <div class="border-t border-slate-150 dark:border-navy-800 px-6 py-3 bg-slate-50 dark:bg-navy-800/40 text-[11px] text-slate-500 dark:text-slate-400 flex items-center justify-between rounded-b-xl">
+                    <span class="flex items-center gap-1.5"><i class="fa-solid fa-shield-halved text-navy-600 dark:text-navy-400"></i> SulAmérica Saúde • Jurídico Corporativo</span>
+                    <span class="italic">Súmulas e Resoluções ANS aplicadas</span>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- SYSTEM FOOTER -->
+    <footer class="mt-auto border-t border-slate-200 dark:border-navy-800 bg-white dark:bg-navy-850/80 text-center py-4 text-xs text-slate-500 dark:text-slate-400 transition-colors duration-200">
+        <p>© 2026 Sul América Companhia de Seguro Saúde. Todos os direitos reservados. Peça datada de 10 de Julho de 2026.</p>
+    </footer>
+
+    <!-- FICHA TÉCNICA MODAL -->
+    <div id="modal-info" class="hidden fixed inset-0 z-50 overflow-y-auto bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-navy-850 rounded-xl border border-slate-200 dark:border-navy-800 max-w-2xl w-full shadow-2xl relative overflow-hidden transition-all transform scale-100 duration-200">
+            <!-- Modal header -->
+            <div class="bg-navy-800 text-white px-6 py-4 flex items-center justify-between">
+                <h3 class="font-bold text-sm tracking-wide flex items-center gap-2">
+                    <i class="fa-solid fa-circle-info"></i> FICHA TÉCNICA DO PROCESSO
+                </h3>
+                <button onclick="closeModal('modal-info')" class="text-slate-300 hover:text-white transition">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+            <!-- Modal Body -->
+            <div class="p-6 space-y-4 text-xs">
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="bg-slate-50 dark:bg-navy-800/40 p-3 rounded-lg border border-slate-100 dark:border-navy-850">
+                        <p class="text-slate-400 dark:text-slate-500">Juízo de Origem</p>
+                        <p class="font-bold">2ª Vara Cível de Uberlândia / MG</p>
+                    </div>
+                    <div class="bg-slate-50 dark:bg-navy-800/40 p-3 rounded-lg border border-slate-100 dark:border-navy-850">
+                        <p class="text-slate-400 dark:text-slate-500">Processo Autuado</p>
+                        <p class="font-bold">1031357-64.2026.8.13.0702</p>
+                    </div>
+                    <div class="bg-slate-50 dark:bg-navy-800/40 p-3 rounded-lg border border-slate-100 dark:border-navy-850">
+                        <p class="text-slate-400 dark:text-slate-500">Autor Principal (Beneficiário)</p>
+                        <p class="font-bold">Marco Tulio Gonçalves Moura</p>
+                    </div>
+                    <div class="bg-slate-50 dark:bg-navy-800/40 p-3 rounded-lg border border-slate-100 dark:border-navy-850">
+                        <p class="text-slate-400 dark:text-slate-500">Pessoa Jurídica Estipulante</p>
+                        <p class="font-bold text-amber-600 dark:text-amber-400">MTG Moura Soluções de TI</p>
+                    </div>
+                    <div class="bg-slate-50 dark:bg-navy-800/40 p-3 rounded-lg border border-slate-100 dark:border-navy-850">
+                        <p class="text-slate-400 dark:text-slate-500">Operadora Ré (Seguradora)</p>
+                        <p class="font-bold">Sul América Companhia de Seguro Saúde</p>
+                    </div>
+                    <div class="bg-slate-50 dark:bg-navy-800/40 p-3 rounded-lg border border-slate-100 dark:border-navy-850">
+                        <p class="text-slate-400 dark:text-slate-500">Data de Distribuição</p>
+                        <p class="font-bold text-slate-700 dark:text-slate-300">19 de Junho de 2026</p>
+                    </div>
+                </div>
+                
+                <div class="border-t border-slate-100 dark:border-navy-700 pt-4">
+                    <p class="font-semibold mb-2 flex items-center gap-1.5"><i class="fa-solid fa-user-tie text-navy-600"></i> Advogados Constituintes da Ré</p>
+                    <div class="flex gap-6">
+                        <div>
+                            <p class="font-semibold text-slate-800 dark:text-slate-200">Márcio Aguiar</p>
+                            <p class="text-[10px] text-slate-500">OAB/RJ 95.148</p>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-slate-800 dark:text-slate-200">José Antônio Martins</p>
+                            <p class="text-[10px] text-slate-500">OAB/SP 340.639</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-950/30 text-amber-800 dark:text-amber-300 p-3 rounded-lg border border-amber-200/50 text-[10px] leading-relaxed">
+                    <i class="fa-solid fa-triangle-exclamation mr-1"></i> <strong>Nota Processual:</strong> O pedido de tutela provisória de urgência visando à imediata suspensão dos reajustes foi expressamente indeferido pelo juiz natural na origem, reconhecendo a necessidade imperiosa de dilação probatória técnica.
+                </div>
+            </div>
+            <!-- Modal Footer -->
+            <div class="border-t border-slate-100 dark:border-navy-700 px-6 py-3 bg-slate-50 dark:bg-navy-800/40 flex justify-end">
+                <button onclick="closeModal('modal-info')" class="bg-slate-200 hover:bg-slate-300 text-slate-700 dark:bg-navy-750 dark:hover:bg-navy-700 dark:text-slate-200 font-bold py-1.5 px-4 rounded-lg shadow-sm transition">
+                    Fechar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOAST POPUP (Clipboard Notification) -->
+    <div id="toast" class="fixed bottom-5 right-5 z-50 bg-navy-800 text-white text-xs px-4 py-2.5 rounded-lg shadow-lg flex items-center gap-2 transform translate-y-10 opacity-0 pointer-events-none transition-all duration-300">
+        <i class="fa-solid fa-circle-check text-green-400"></i>
+        <span id="toast-message">Texto copiado para a área de transferência!</span>
+    </div>
+
+    <!-- BUSINESS RULES DATA & JS LOGIC -->
+    <script>
+        // Full structured content matching the file's points
+        const tesesData = [
+            {
+                id: 1,
+                title: "Ilegitimidade Ativa dos Beneficiários Isolados",
+                ementaText: "A legitimidade ativa para questionar cláusulas financeiras e postular repetição de indébito em contrato coletivo pertence de forma exclusiva à pessoa jurídica estipulante, única titular do faturamento corporativo (STJ, REsp nº 2.036.758/SP).",
+                summary: "Discussões de natureza patrimonial e financeira em contratos corporativos (PME) vinculam-se unicamente às partes signatárias da apólice (operadora de saúde e pessoa jurídica estipulante).",
+                precedent: "STJ, REsp nº 2.036.758/SP (Rel. Min. Paulo de Tarso Sanseverino)",
+                legalBasis: "Artigo 18 do Código de Processo Civil (vedação à defesa de direito alheio em nome próprio).",
+                arguments: [
+                    "O contrato coletivo PME foi firmado com a empresa 'MTG Moura Soluções de TI' (CNPJ contratante).",
+                    "Todas as faturas, custos e prêmios são gerados e cobrados diretamente em desfavor da pessoa jurídica estipulante.",
+                    "O beneficiário isolado (pessoa física) goza apenas de legitimidade assistencial para coberturas e atendimentos, mas carece de pertinência para impugnar a engenharia contratual financeira."
+                ],
+                literalQuote: "“Se os prêmios são faturados contra a pessoa jurídica, que assumiu os ônus da pactuação e do pagamento, não há pertinência jurídica na pretensão de pessoas físicas isoladas postularem a devolução de verbas que institucionalmente não desembolsaram em face da operadora.”",
+                consequence: "Consequencialismo: Permitir litígios individuais sobre faturamento de CNPJ fragmenta a governança da apólice corporativa e expõe a operadora a um passivo indevido e desorganizado.",
+                visualType: "legitimacy-chart"
+            },
+            {
+                id: 2,
+                title: "Inépcia da Inicial por Ausência de Memória de Cálculo",
+                ementaText: "A ausência de quantificação exata do valor incontroverso e de apresentação de memória de cálculo conduz à inépcia da petição inicial, com fundamento no artigo 330, § 2º, do CPC.",
+                summary: "Demandas revisionais de contratos financeiros e de trato sucessivo exigem obrigatoriamente a planilha técnica discriminando os valores cobrados, os que se consideram corretos e o montante incontroverso.",
+                precedent: "Tema da Regularidade Técnica Formal de Petições de Trato Sucessivo.",
+                legalBasis: "Artigo 330, § 2º e Artigo 320 do Código de Processo Civil.",
+                arguments: [
+                    "A parte autora atacou genericamente os reajustes técnicos e de faixa etária.",
+                    "Deixaram de apresentar planilha analítica contábil demonstrando matematicamente o suposto indébito.",
+                    "Houve uma mera e indevida comparação abstrata entre reajustes PME coletivos e limites individuais impostos pela ANS."
+                ],
+                literalQuote: "“A exordial ancora-se em uma narrativa pueril e desprovida de qualquer liame técnico regulatório, limitando-se a comparar singelamente os reajustes técnicos aplicados no âmbito do contrato coletivo aos tetos tarifários definidos pela ANS exclusivamente para a modalidade individual.”",
+                consequence: "Consequencialismo: A ausência de liquidez nos pedidos revisores inviabiliza o pleno contraditório da defesa técnica e impossibilita o juízo de aferir a real dimensão e fundamentação da lide financeira.",
+                visualType: "missing-calc"
+            },
+            {
+                id: 3,
+                title: "Prescrição Trienal das Parcelas Pretéreitas (Tema 610/STJ)",
+                ementaText: "Incide a prescrição trienal sobre as pretensões de devolução de prêmios (Tema 610/STJ), sendo fática e juridicamente descabida a suspensão do prazo para beneficiários menores atrelados a um faturamento empresarial indivisível.",
+                summary: "Todas as pretensões de reembolso e revisão fundadas em enriquecimento sem causa de parcelas vencidas em contratos de planos de saúde prescrevem em 3 anos.",
+                precedent: "STJ, Recurso Repetitivo Tema nº 610 (REsp nº 1.360.969/RS).",
+                legalBasis: "Artigo 206, § 3º, inciso IV do Código Civil.",
+                arguments: [
+                    "A demanda revisional foi distribuída e autuada em 19 de junho de 2026.",
+                    "Ficam irremediavelmente fulminadas pela prescrição todas as parcelas e diferenças pagas em data anterior a 19 de junho de 2023.",
+                    "A pretensa imunidade prescricional dos beneficiários menores é inoperante aqui, pois quem pagou e suportou as faturas emitidas foi o CNPJ da estipulante (ou o provedor de fundos de forma unificada)."
+                ],
+                literalQuote: "“Utilizar a incapacidade civil dos filhos para blindar o real pagador (o adulto/empresa) contra os efeitos do decurso do tempo configura evidente hibridismo utilitarista e fraude ao instituto da prescrição.”",
+                consequence: "Consequencialismo: Reviver cobranças históricas consumidas anos atrás desestabiliza o caixa mútuo do plano, o qual já liquidou as despesas médicas daquela época.",
+                visualType: "timeline"
+            },
+            {
+                id: 4,
+                title: "Validade do Negócio Coletivo e 'Falso Coletivo' Inexistente",
+                ementaText: "O arranjo de núcleo familiar em apólices PME é modalidade lícita e validada pela RN nº 557/2022 da ANS, não configurando o alegado 'falso coletivo'. A fruição das vantagens tarifárias corporativas de entrada impede a posterior impugnação do modelo à luz da vedação ao comportamento contraditório (venire contra factum proprium).",
+                summary: "Microempresas constituídas legitimamente de forma longeva têm todo direito de estender benefícios securitários a grupos familiares pequenos sem que isso caracterize ardil ou simulação.",
+                precedent: "STF, RE nº 590.415 / Parecer Jurídico do Min. Luís Roberto Barroso.",
+                legalBasis: "RN nº 557/2022 e Súmula Normativa nº 19 da ANS (que veda seleção de risco e restrição de entrada).",
+                arguments: [
+                    "A estipulante 'MTG Moura Soluções de TI' possui 7 anos e 9 meses de atividade real e contínua no mercado (não é empresa de fachada).",
+                    "A operadora cumpriu ordem de aceitar o grupo familiar de forma legítima, o que desqualifica simulações e ardil.",
+                    "Venire contra factum proprium: O beneficiário usou o CNPJ para conseguir menores preços e isenções de carência e, ao reajustar, exige regras protetivas de planos individuais."
+                ],
+                literalQuote: "“Pretender, agora, desqualificar a natureza de um contrato cujos bônus aproveitou por longo período constitui manifesto abuso de direito e tentativa de enriquecimento sem causa...”",
+                consequence: "Consequencialismo: Premiar esse comportamento oportunista de 'cherry-picking' regulatório geraria distorções macroeconômicas no setor e aumento generalizado das tabelas corporativas.",
+                visualType: "broken-pillars"
+            },
+            {
+                id: 5,
+                title: "Impossibilidade de Transmutação e Plano Descontinuado",
+                ementaText: "Impossibilidade de determinação judicial de migração para plano individual não comercializado no mercado pela ré desde 2005, cuja execução forçada imporia à operadora infração administrativa descrita no artigo 19 da RN nº 489/ANS. Precedente impeditivo firmado pelo STJ (REsp nº 2.180.820/MG).",
+                summary: "O Judiciário não possui prerrogativa institucional para compelir empresas privadas a operar carteiras de planos individuais que encontram-se inativas e sem portfólio de comercialização ativo.",
+                precedent: "STJ, REsp nº 2.180.820/MG (Rel. Min. Marco Buzzi, DJE 22/12/2025).",
+                legalBasis: "Artigo 19 da RN nº 489/ANS (tipificação de infração gravíssima por comercializar/operar produto sem registro ou cancelado).",
+                arguments: [
+                    "A SulAmérica não comercializa planos de saúde de caráter estritamente individual ou familiar desde 2005.",
+                    "A imposição forçada de migração faria a ré incorrer em ilegalidade administrativa sancionável de ofício pela ANS.",
+                    "Privilegia-se a força vinculante da autonomia de mercado e a livre iniciativa empresarial."
+                ],
+                literalQuote: "“Isso porque o STJ firmou entendimento de que... a operadora não está obrigada a disponibilizar tal modalidade na hipótese de não comercializar esse tipo de produto no mercado. Obrigá-la a criar um produto em sua carteira violaria os princípios da livre iniciativa e do equilíbrio atuarial.”",
+                consequence: "Consequencialismo: Criação forçada de plano individual inexistente causa distorções técnicas operacionais sem provimento em resseguro ou fundos regulatórios garantidores.",
+                visualType: "individual-plan"
+            },
+            {
+                id: 6,
+                title: "Legalidade e Higidez Atuarial do Percentual Único (PRU)",
+                ementaText: "Legalidade e higidez atuarial do Percentual de Reajuste Único (PRU) em agrupamento compulsório de contratos (pool de risco), indexado por VCMH e sinistralidade linear, em observância aos artigos 37 e 38 da RN nº 565/2022 da ANS.",
+                summary: "Contratos corporativos de pequeno porte (PME com até 29 vidas) são vinculados obrigatoriamente pela ANS a um agrupamento nacional unificado de risco (pool), sofrendo reajuste atuarial linear comum.",
+                precedent: "Metodologia de Resolução da ANS de Solidariedade de Carteira de Pequenas Empresas.",
+                legalBasis: "Artigos 37 e 38 da Resolução Normativa nº 565/2022 da ANS.",
+                arguments: [
+                    "O reajuste linear do agrupamento compulsório é obrigação regulatória de governança, não ato de arbítrio.",
+                    "Busca neutralizar que flutuações e eventos de custos médicos catastróficos quebrem pequenas apólices de forma isolada.",
+                    "A média atuarial resulta no PRU ponderando sinistralidade (IRS) e variação médica geral (VCMH)."
+                ],
+                literalQuote: "“...nos planos coletivos com até 30 (trinta) vidas, procede-se a um agrupamento de contratos, que mitiga os riscos de cada carteira individualmente considerada. Nesse ambiente... o Judiciário não deve interferir, salvo para conter abusos.”",
+                consequence: "Consequencialismo: Se cada empresa de pequeno porte judicializar e sair do pool comum no momento de sinistralidade alta, a equação do mutualismo rompe-se, decretando o colapso do produto comercializado.",
+                visualType: "math-formulas"
+            },
+            {
+                id: 7,
+                title: "Validade dos Reajustes por Faixa Etária",
+                ementaText: "Validade dos reajustes por mudança de faixa etária ancorados em expressa previsão contratual e validados por Nota Técnica de Registro de Produto (NTRP), com observância dos Temas Repetitivos 952 e 1.016 do STJ.",
+                summary: "Legitimidade atuarial de majoração das mensalidades segundo faixas de idade, justificada pelo aumento progressivo do risco biológico de utilização do ecossistema médico.",
+                precedent: "STJ, Recursos Repetitivos Tema 952 e Tema 1.016 (extensão aos contratos coletivos).",
+                legalBasis: "Resolução Normativa nº 563/2022 da ANS.",
+                arguments: [
+                    "Amparo e previsão expressa na apólice celebrada com a empresa MTG Moura.",
+                    "Adesão matemática rigorosa às proporções regulatórias: limite de até 6x de variação entre a primeira e a última faixa etária.",
+                    "As taxas etárias incidentes sobre o produto foram devidamente informadas ao órgão regulador via Nota Técnica de Registro de Produto (NTRP)."
+                ],
+                literalQuote: "“A ausência de reajuste nos prêmios pagos por aqueles que atingem faixa etária de maior risco e utilização redundaria, inevitavelmente, em um grave déficit atuarial a ser suportado pelos integrantes das demais faixas, desequilibrando e colapsando todo o sistema de saúde suplementar.”",
+                consequence: "Consequencialismo: Isentar as faixas idosas de recomposição financeira transfere todo o impacto inflacionário do produto de saúde às faixas jovens, inviabilizando o consumo das novas gerações.",
+                visualType: "etario-table"
+            },
+            {
+                id: 8,
+                title: "Imprescindibilidade de Perícia Técnica Atuarial Complexa",
+                ementaText: "A desconstituição técnica de índices corporativos exige dilação probatória mediante perícia atuarial complexa ou aproveitamento idôneo de prova emprestada, com suporte em expertises contábil-atuariais globais.",
+                summary: "Discussão de sinistralidade médica global, amostragem e contabilidade de carteiras reguladas exige parecer técnico de especialista em Atuária (IBA), sendo vedado o julgamento pautado apenas em intuições.",
+                precedent: "Admissibilidade e eficácia de prova emprestada homologada judicialmente (Processo nº 1031894-75.2017.8.26.0100 - TJSP).",
+                legalBasis: "Artigo 372 (Prova Emprestada) e Artigo 156 do Código de Processo Civil.",
+                arguments: [
+                    "A correção aritmética do PRU da SulAmérica foi reiteradamente atestada por perícias judiciais in loco.",
+                    "Os balanços de despesas médicas são anualmente auditados por consultorias multinacionais de renome (KPMG e Deloitte).",
+                    "A parte ré propõe a juntada de laudo atuarial idêntico de caso paradigma como prova emprestada com fito de economia processual."
+                ],
+                literalQuote: "“O cálculo dos índices de reajuste destas apólices corporativas não consubstancia uma mera operação aritmética de adição ou subtração, mas sim a aplicação de fórmulas estatísticas e atuariais altamente sofisticadas...”",
+                consequence: "Consequencialismo: O julgamento antecipado desprovido de manifestação técnica atuarial gera sentenças tecnicamente insustentáveis e cerceamento definitivo de defesa.",
+                visualType: "pericia-flow"
+            },
+            {
+                id: 9,
+                title: "Ausência de Ilícito Civil e Onereosidade Excessiva",
+                ementaText: "Inexistência de onerosidade excessiva, abusividade ou ilícito material que dê substrato ao pleito de repetição de indébito simples.",
+                summary: "Tendo a operadora de saúde prestado assistência médica irrestrita aos beneficiários durante todo o pacto, não cabe condenação de ressarcimento patrimonial que enseje enriquecimento sem causa.",
+                precedent: "Teoria do Equilíbrio Sinalagmático de Contratos Securitários.",
+                legalBasis: "Artigos 188, I (Exercício regular de direito) e 884 (Vedação ao enriquecimento sem causa) do Código Civil.",
+                arguments: [
+                    "A SulAmérica cobrou mensalidades perfeitamente estipuladas e justificadas na atuarialidade do risco da carteira.",
+                    "O usuário usufruiu da rede hospitalar e de laboratórios sem negativas ou limitações relatadas na petição.",
+                    "Prêmios arrecadados já foram repassados e liquidados para custear o próprio sinistro havido no período."
+                ],
+                literalQuote: "“Determinar a devolução pecuniária de prêmios que já foram integralmente consumidos para a garantia do risco e para o custeio de sinistros pretéritos da carteira significaria conceder à demandante uma proteção securitária retroativa a descoberto.”",
+                consequence: "Consequencialismo: Ordenar estorno de prêmios após a fruição de coberturas isenta o contratante de custos securitários e socializa de forma injusta o ônus do consumo à seguradora e à coletividade.",
+                visualType: "no-indebito"
+            },
+            {
+                id: 10,
+                title: "Improcedência Integral dos Pedidos",
+                ementaText: "Improcedência integral da demanda.",
+                summary: "Conclusão definitiva pelo desfecho meritório do feito de forma favorável à operadora de saúde ré.",
+                precedent: "Eficácia e Rigor das Condições Gerais Contratuais.",
+                legalBasis: "Artigo 487, inciso I do Código de Processo Civil.",
+                arguments: [
+                    "Rejeição categórica da tese inovadora de desqualificação por falso coletivo.",
+                    "Preservação integral e irrestrita das cláusulas financeiras contratuais anuídas na entrada pela estipulante.",
+                    "Descarte definitivo do pedido de repetição simples ou de transmutação forçada sob pena de violação à livre iniciativa securitária."
+                ],
+                literalQuote: "“Diante de todo o exposto fático e jurídico, restando irrefutavelmente demonstrada a higidez da apólice... a Sul América requer... o julgamento de total improcedência dos pedidos formulados na petição inicial...”",
+                consequence: "Consequencialismo: A improcedência preserva a força vinculante da vontade contratual das partes, a segurança das apólices corporativas de PME e a confiabilidade das regras estipuladas pela ANS.",
+                visualType: "full-dismissal"
+            }
+        ];
+
+        let selectedTeseId = 1;
+
+        // UI State Handlers
+        window.onload = function() {
+            renderRadioCards();
+            updateDetailView(1);
+            
+            // Check dynamic system dark mode preference
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                document.documentElement.classList.add('dark');
+                document.getElementById('theme-icon').className = "fa-solid fa-sun text-lg text-amber-400";
+            }
+        }
+
+        function toggleDarkMode() {
+            const html = document.documentElement;
+            const icon = document.getElementById('theme-icon');
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                icon.className = "fa-solid fa-moon text-lg";
+            } else {
+                html.classList.add('dark');
+                icon.className = "fa-solid fa-sun text-lg text-amber-400";
+            }
+        }
+
+        // Render Sidebar Left Lists
+        function renderRadioCards(data = tesesData) {
+            const container = document.getElementById('radio-cards-container');
+            container.innerHTML = '';
+
+            if(data.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-8 bg-slate-100 dark:bg-navy-800 rounded-lg text-slate-400 text-xs">
+                        <i class="fa-solid fa-magnifying-glass text-xl mb-2"></i>
+                        <p>Nenhuma tese jurídica encontrada.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            data.forEach((tese) => {
+                const isSelected = tese.id === selectedTeseId;
+                const card = document.createElement('div');
+                card.id = `tese-card-${tese.id}`;
+                card.className = `p-4 rounded-xl border transition-all duration-150 cursor-pointer relative ${
+                    isSelected 
+                        ? 'bg-navy-800 border-navy-800 text-white dark:bg-slate-100 dark:border-white dark:text-navy-900 shadow-md transform translate-x-1.5' 
+                        : 'bg-white border-slate-200 text-slate-800 dark:bg-navy-850 dark:border-navy-800 dark:text-slate-200 hover:border-navy-600 dark:hover:border-navy-400 hover:bg-slate-50/50 dark:hover:bg-navy-800/40'
+                }`;
+                card.onclick = () => selectTese(tese.id);
+
+                card.innerHTML = `
+                    <div class="flex items-start gap-3">
+                        <div class="mt-1 shrink-0">
+                            <input type="radio" name="tese-selector" value="${tese.id}" ${isSelected ? 'checked' : ''} 
+                                   class="w-4 h-4 text-navy-800 dark:text-slate-100 border-slate-300 focus:ring-0 cursor-pointer pointer-events-none" />
+                        </div>
+                        <div class="space-y-1 pr-4">
+                            <div class="flex items-center gap-2">
+                                <span class="text-[9px] font-bold tracking-wider uppercase ${isSelected ? 'text-amber-400 dark:text-amber-600' : 'text-amber-600 dark:text-amber-400'}">Tese ${tese.id}</span>
+                                ${tese.precedent !== "Metodologia de Resolução da ANS de Solidariedade de Carteira de Pequenas Empresas." && tese.precedent !== "Tema da Regularidade Técnica Formal de Petições de Trato Sucessivo." && tese.precedent !== "Teoria do Equilíbrio Sinalagmático de Contratos Securitários." ? `<span class="text-[8px] px-1.5 py-0.5 rounded ${isSelected ? 'bg-navy-700 text-white dark:bg-slate-200 dark:text-navy-800' : 'bg-slate-100 text-slate-600 dark:bg-navy-800 dark:text-slate-400'} font-semibold truncate max-w-[120px]">${tese.precedent.split('(')[0]}</span>` : ''}
+                            </div>
+                            <h4 class="text-xs font-bold leading-snug">${tese.title}</h4>
+                            <p class="text-[10px] ${isSelected ? 'text-slate-200 dark:text-navy-700' : 'text-slate-500 dark:text-slate-400'} line-clamp-2">${tese.summary}</p>
+                        </div>
+                    </div>
+                    <div class="absolute right-3 top-1/2 -translate-y-1/2 opacity-60">
+                        <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // Handle Active Radio Choice Selection
+        function selectTese(id) {
+            selectedTeseId = id;
+            
+            // Re-render side lists
+            const cards = document.querySelectorAll('[id^="tese-card-"]');
+            cards.forEach(card => {
+                const cardId = parseInt(card.id.replace('tese-card-', ''));
+                const tese = tesesData.find(t => t.id === cardId);
+                const isSelected = cardId === selectedTeseId;
+                
+                if (isSelected) {
+                    card.className = "p-4 rounded-xl border transition-all duration-150 cursor-pointer relative bg-navy-800 border-navy-800 text-white dark:bg-slate-100 dark:border-white dark:text-navy-900 shadow-md transform translate-x-1.5";
+                } else {
+                    card.className = "p-4 rounded-xl border border-slate-200 bg-white text-slate-800 dark:bg-navy-850 dark:border-navy-800 dark:text-slate-200 hover:border-navy-600 dark:hover:border-navy-400 hover:bg-slate-50/50 dark:hover:bg-navy-800/40 transition-all duration-150 cursor-pointer relative";
+                }
+                
+                const radio = card.querySelector('input[type="radio"]');
+                if (radio) radio.checked = isSelected;
+            });
+
+            // Update main view on right side
+            updateDetailView(id);
+        }
+
+        // Search Filter
+        function filterItems() {
+            const query = document.getElementById('search-input').value.toLowerCase();
+            const filtered = tesesData.filter(tese => 
+                tese.title.toLowerCase().includes(query) || 
+                tese.summary.toLowerCase().includes(query) ||
+                tese.ementaText.toLowerCase().includes(query)
+            );
+            
+            renderRadioCards(filtered);
+            document.getElementById('items-count').textContent = `${filtered.length} Teses`;
+        }
+
+        // Render Visual Elements based on Tese Item Choice
+        function renderVisualWidget(type, item) {
+            switch(type) {
+                case "legitimacy-chart":
+                    return `
+                        <div class="bg-slate-50 dark:bg-navy-800/50 p-4 rounded-xl border border-slate-100 dark:border-navy-800/80">
+                            <p class="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-3 text-center">Estrutura Subjetiva Financeira PME</p>
+                            <div class="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
+                                <div class="bg-navy-800 dark:bg-navy-750 text-white p-3 rounded-lg text-center w-full max-w-[140px] shadow-sm">
+                                    <p class="font-bold">SulAmérica</p>
+                                    <p class="text-[8px] text-slate-300">Operadora de Saúde</p>
+                                </div>
+                                <div class="text-slate-400 flex flex-col items-center shrink-0">
+                                    <i class="fa-solid fa-money-bill-transfer text-lg text-amber-500 animate-pulse"></i>
+                                    <span class="text-[8px] font-bold mt-1 uppercase text-slate-500">Cobrança Comercial (CNPJ)</span>
+                                </div>
+                                <div class="bg-amber-600 dark:bg-amber-700 text-white p-3 rounded-lg text-center w-full max-w-[140px] shadow-sm">
+                                    <p class="font-bold truncate">MTG Moura S/TI</p>
+                                    <p class="text-[8px] text-amber-200">Estipulante Contratante</p>
+                                </div>
+                                <div class="text-slate-400 flex flex-col items-center shrink-0">
+                                    <i class="fa-solid fa-ban text-lg text-red-500"></i>
+                                    <span class="text-[8px] font-bold mt-1 uppercase text-slate-500">Ilegitimidade Financeira</span>
+                                </div>
+                                <div class="bg-slate-200 dark:bg-navy-700 text-slate-700 dark:text-slate-200 p-3 rounded-lg text-center w-full max-w-[140px] border border-slate-300 dark:border-navy-600">
+                                    <p class="font-bold">Pessoas Físicas</p>
+                                    <p class="text-[8px] text-slate-500 dark:text-slate-400">Beneficiários Dependentes</p>
+                                </div>
+                            </div>
+                            <div class="mt-4 p-2 bg-amber-50 dark:bg-amber-950/20 text-amber-800 dark:text-amber-400 border border-amber-200/40 rounded text-[9px] leading-snug">
+                                <i class="fa-solid fa-triangle-exclamation mr-1"></i> Nas ações financeiras corporativas (revisões de mensalidades e devoluções), a legitimidade em juízo pertence de forma estrita e indivisível à <strong>Pessoa Jurídica Estipulante</strong> (REsp 2.036.758/SP).
+                            </div>
+                        </div>
+                    `;
+                case "missing-calc":
+                    return `
+                        <div class="bg-slate-50 dark:bg-navy-800/50 p-4 rounded-xl border border-slate-100 dark:border-navy-800/80">
+                            <p class="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-3">Requisitos de Admissibilidade da Inicial Revisional (Art. 330, § 2º CPC)</p>
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+                                <div class="bg-white dark:bg-navy-850 p-3 rounded-lg border border-red-200 dark:border-red-900/40 shadow-xs flex items-start gap-2">
+                                    <i class="fa-solid fa-circle-xmark text-red-500 mt-0.5 text-base"></i>
+                                    <div>
+                                        <p class="font-bold">Planilha de Débito</p>
+                                        <p class="text-[9px] text-slate-500">Omitida pelos autores, impedindo verificação do indébito.</p>
+                                    </div>
+                                </div>
+                                <div class="bg-white dark:bg-navy-850 p-3 rounded-lg border border-red-200 dark:border-red-900/40 shadow-xs flex items-start gap-2">
+                                    <i class="fa-solid fa-circle-xmark text-red-500 mt-0.5 text-base"></i>
+                                    <div>
+                                        <p class="font-bold">Valor Incontroverso</p>
+                                        <p class="text-[9px] text-slate-500">Não foi quantificado nem demonstrado pormenorizadamente.</p>
+                                    </div>
+                                </div>
+                                <div class="bg-white dark:bg-navy-850 p-3 rounded-lg border border-green-200 dark:border-green-900/40 shadow-xs flex items-start gap-2">
+                                    <i class="fa-solid fa-circle-check text-green-500 mt-0.5 text-base"></i>
+                                    <div>
+                                        <p class="font-bold">Alegativa Genérica</p>
+                                        <p class="text-[9px] text-slate-500">Mera confrontação superficial com as balizas individuais.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                case "timeline":
+                    return `
+                        <div class="bg-slate-50 dark:bg-navy-800/50 p-4 rounded-xl border border-slate-100 dark:border-navy-800/80">
+                            <p class="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-3">Linha do Tempo da Prescrição Trienal (Tema 610/STJ)</p>
+                            <div class="relative pl-6 space-y-4 text-xs">
+                                <div class="absolute left-[7px] top-1.5 bottom-1.5 w-0.5 bg-slate-300 dark:bg-navy-700"></div>
+                                <div class="relative">
+                                    <div class="absolute -left-[23px] top-1 w-3.5 h-3.5 rounded-full border-2 border-red-500 bg-white dark:bg-navy-850 flex items-center justify-center">
+                                        <div class="w-1.5 h-1.5 rounded-full bg-red-500"></div>
+                                    </div>
+                                    <p class="font-bold text-red-600 dark:text-red-400">Parcelas Prescritas (Anteriores a 19/06/2023)</p>
+                                    <p class="text-[10px] text-slate-500">Pretensão de reembolso irremediavelmente fulminada sob o Tema 610 do STJ.</p>
+                                </div>
+                                <div class="relative">
+                                    <div class="absolute -left-[23px] top-1 w-3.5 h-3.5 rounded-full border-2 border-green-500 bg-white dark:bg-navy-850 flex items-center justify-center">
+                                        <div class="w-1.5 h-1.5 rounded-full bg-green-500"></div>
+                                    </div>
+                                    <p class="font-bold text-green-600 dark:text-green-400">Limite de Impugnação Admissível (19/06/2023 a 19/06/2026)</p>
+                                    <p class="text-[10px] text-slate-500">Apenas as parcelas ativas no triênio antecedente à distribuição podem ser revisadas.</p>
+                                </div>
+                                <div class="relative">
+                                    <div class="absolute -left-[23px] top-1 w-3.5 h-3.5 rounded-full border-2 border-navy-800 bg-white dark:bg-navy-850 flex items-center justify-center">
+                                        <div class="w-1.5 h-1.5 rounded-full bg-navy-800 dark:bg-slate-200"></div>
+                                    </div>
+                                    <p class="font-bold">Ajuizamento do Processo: 19 de Junho de 2026</p>
+                                    <p class="text-[10px] text-slate-500">Data de consolidação da pretensão jurídica autoral.</p>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                case "broken-pillars":
+                    return `
+                        <div class="bg-slate-50 dark:bg-navy-800/50 p-4 rounded-xl border border-slate-100 dark:border-navy-800/80">
+                            <p class="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-3 text-center">Desconstrução da Tese do Falso Coletivo</p>
+                            <p class="text-[10px] text-slate-500 mb-4 text-center">Mecanismos contratuais e regulatórios violados por provimentos revisionais arbitrários:</p>
+                            
+                            <div class="grid grid-cols-2 sm:grid-cols-5 gap-2.5 text-[10px] font-semibold text-center text-slate-700 dark:text-slate-300">
+                                <div class="bg-white dark:bg-navy-850 p-2.5 rounded-lg border border-slate-200 dark:border-navy-700 shadow-xs flex flex-col justify-between h-28 relative">
+                                    <span class="text-xs text-red-500 font-bold">1</span>
+                                    <p class="leading-tight">Livre Iniciativa</p>
+                                    <p class="text-[8px] font-normal text-slate-500 leading-snug">Impõe contrato compulsório e controle de preços.</p>
+                                </div>
+                                <div class="bg-white dark:bg-navy-850 p-2.5 rounded-lg border border-slate-200 dark:border-navy-700 shadow-xs flex flex-col justify-between h-28 relative">
+                                    <span class="text-xs text-red-500 font-bold">2</span>
+                                    <p class="leading-tight">Legalidade</p>
+                                    <p class="text-[8px] font-normal text-slate-500 leading-snug">Subverte o contrato e usurpa competências da ANS.</p>
+                                </div>
+                                <div class="bg-white dark:bg-navy-850 p-2.5 rounded-lg border border-red-300 dark:border-red-950/40 shadow-sm flex flex-col justify-between h-28 relative overflow-hidden bg-red-50/10">
+                                    <span class="text-xs text-red-500 font-bold"><i class="fa-solid fa-burst text-xs animate-ping"></i> 3</span>
+                                    <p class="leading-tight font-bold text-red-600 dark:text-red-400">Boa-Fé Objetiva</p>
+                                    <p class="text-[8px] font-normal text-slate-500 leading-snug">Premia o comportamento contraditório das partes.</p>
+                                    <div class="absolute top-0 right-0 h-1.5 w-1.5 bg-red-500"></div>
+                                </div>
+                                <div class="bg-white dark:bg-navy-850 p-2.5 rounded-lg border border-slate-200 dark:border-navy-700 shadow-xs flex flex-col justify-between h-28 relative">
+                                    <span class="text-xs text-red-500 font-bold">4</span>
+                                    <p class="leading-tight">Proteção ao Consumidor</p>
+                                    <p class="text-[8px] font-normal text-slate-500 leading-snug">Gera inflação e escassez para a carteira majoritária.</p>
+                                </div>
+                                <div class="bg-white dark:bg-navy-850 p-2.5 rounded-lg border border-slate-200 dark:border-navy-700 shadow-xs flex flex-col justify-between h-28 relative">
+                                    <span class="text-xs text-red-500 font-bold">5</span>
+                                    <p class="leading-tight">Equilíbrio Atuarial</p>
+                                    <p class="text-[8px] font-normal text-slate-500 leading-snug">Rompe a alocação de riscos (mutualismo).</p>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                case "individual-plan":
+                    return `
+                        <div class="bg-slate-50 dark:bg-navy-800/50 p-4 rounded-xl border border-slate-100 dark:border-navy-800/80">
+                            <p class="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-3">Impossibilidade Legal de Comercialização Coativa</p>
+                            <div class="flex items-center gap-4 text-xs">
+                                <div class="bg-red-100 dark:bg-red-950/40 text-red-800 dark:text-red-400 p-3 rounded-lg flex items-center justify-center shrink-0">
+                                    <i class="fa-solid fa-triangle-exclamation text-3xl"></i>
+                                </div>
+                                <div class="space-y-1">
+                                    <p class="font-bold">Infração do Artigo 19 da RN nº 489 da ANS</p>
+                                    <p class="text-[10px] text-slate-600 dark:text-slate-400 leading-relaxed">
+                                        Forçar a seguradora a ofertar plano individual (inexistente em sua grade desde 2005) obriga a operadora a cometer ilícito administrativo de comercializar produto sem portfólio de registro ativo perante a ANS.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="mt-3 bg-white dark:bg-navy-850 p-3 rounded-lg border border-slate-200 dark:border-navy-750">
+                                <p class="text-[10px] font-semibold text-navy-800 dark:text-slate-300">Tese Impeditiva Consagrada no STJ (REsp 2.180.820/MG):</p>
+                                <p class="text-[9px] text-slate-500 mt-1 italic">
+                                    "A operadora não está obrigada a disponibilizar tal modalidade na hipótese de não comercializar esse tipo de produto no mercado."
+                                </p>
+                            </div>
+                        </div>
+                    `;
+                case "math-formulas":
+                    return `
+                        <div class="bg-slate-50 dark:bg-navy-800/50 p-4 rounded-xl border border-slate-100 dark:border-navy-800/80">
+                            <p class="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-3 text-center">Fórmulas Regulatórias da Composição do PRU</p>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs text-center">
+                                <!-- VCMH Formula -->
+                                <div class="bg-white dark:bg-navy-850 p-4 rounded-lg border border-slate-200 dark:border-navy-750 shadow-xs">
+                                    <p class="font-bold text-[10px] text-navy-800 dark:text-slate-300 uppercase tracking-wider mb-3">1. Variação de Custos (VCMH)</p>
+                                    <div class="flex items-center justify-center gap-1.5 my-3">
+                                        <span class="font-semibold text-xs">VCMH =</span>
+                                        <div class="flex flex-col items-center">
+                                            <span class="border-b border-slate-400 dark:border-navy-600 px-3 pb-1 text-[10px]">
+                                                ( &Sigma; Sinistros Pagos<sub>t</sub> / &Sigma; Beneficiários<sub>t</sub> )
+                                            </span>
+                                            <span class="pt-1 text-[10px]">
+                                                ( &Sigma; Sinistros Pagos<sub>t-1</sub> / &Sigma; Beneficiários<sub>t-1</sub> )
+                                            </span>
+                                        </div>
+                                        <span class="font-semibold text-xs ml-1">- 1</span>
+                                    </div>
+                                    <p class="text-[8px] text-slate-500">Mede o crescimento real inflacionário setorial médico-hospitalar.</p>
+                                </div>
+
+                                <!-- IRS Formula -->
+                                <div class="bg-white dark:bg-navy-850 p-4 rounded-lg border border-slate-200 dark:border-navy-750 shadow-xs">
+                                    <p class="font-bold text-[10px] text-navy-800 dark:text-slate-300 uppercase tracking-wider mb-3">2. Índice de Sinistralidade (IRS)</p>
+                                    <div class="flex items-center justify-center gap-1.5 my-3">
+                                        <span class="font-semibold text-xs">IRS =</span>
+                                        <div class="flex flex-col items-center">
+                                            <span class="border-b border-slate-400 dark:border-navy-600 px-3 pb-1 text-[10px]">
+                                                ( &Sigma; Sinistros )
+                                            </span>
+                                            <span class="pt-1 text-[10px]">
+                                                ( &Sigma; Prêmios )
+                                            </span>
+                                        </div>
+                                        <span class="font-semibold text-xs mx-1">/</span>
+                                        <span class="font-bold text-amber-600 dark:text-amber-400">0,65</span>
+                                    </div>
+                                    <p class="text-[8px] text-slate-500">Compara as despesas efetivas com a meta de equilíbrio fixada em 65%.</p>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                case "etario-table":
+                    return `
+                        <div class="bg-slate-50 dark:bg-navy-800/50 p-4 rounded-xl border border-slate-100 dark:border-navy-800/80">
+                            <p class="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-3 text-center">Faixas Etárias & Balizas de Limite da ANS</p>
+                            <div class="overflow-x-auto">
+                                <table class="w-full text-[10px] text-left border-collapse bg-white dark:bg-navy-850 rounded-lg overflow-hidden border border-slate-200 dark:border-navy-750">
+                                    <thead>
+                                        <tr class="bg-slate-100 dark:bg-navy-800 text-slate-700 dark:text-slate-300 font-bold border-b border-slate-200 dark:border-navy-700">
+                                            <th class="p-2">Regra de Variação</th>
+                                            <th class="p-2">Baliza Reguladora</th>
+                                            <th class="p-2 text-center">Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-slate-150 dark:divide-navy-750">
+                                        <tr>
+                                            <td class="p-2 font-medium">10 Faixas de Idade</td>
+                                            <td class="p-2">Cumprido nos exatos moldes da RN 563/2022</td>
+                                            <td class="p-2 text-center text-green-500 font-bold"><i class="fa-solid fa-circle-check"></i> OK</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="p-2 font-medium">Última vs. Primeira Faixa</td>
+                                            <td class="p-2">Valor da 10ª faixa não pode superar 6x o valor da 1ª</td>
+                                            <td class="p-2 text-center text-green-500 font-bold"><i class="fa-solid fa-circle-check"></i> OK</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="p-2 font-medium">Variação Acumulada</td>
+                                            <td class="p-2">Soma da 7ª à 10ª faixas não pode superar a da 1ª à 7ª</td>
+                                            <td class="p-2 text-center text-green-500 font-bold"><i class="fa-solid fa-circle-check"></i> OK</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="mt-2.5 text-[8px] text-slate-500 leading-snug">
+                                * Conformidade e lisura atuarial certificadas na Nota Técnica de Registro de Produto (NTRP) aprovada pela ANS.
+                            </div>
+                        </div>
+                    `;
+                case "pericia-flow":
+                    return `
+                        <div class="bg-slate-50 dark:bg-navy-800/50 p-4 rounded-xl border border-slate-100 dark:border-navy-800/80">
+                            <p class="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-3">Fluxograma das Provas Periciais Admitidas</p>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                                <div class="bg-white dark:bg-navy-850 p-3 rounded-lg border border-slate-200 dark:border-navy-750 shadow-xs">
+                                    <p class="font-bold text-amber-600 dark:text-amber-400 flex items-center gap-1.5 mb-1"><i class="fa-solid fa-file-contract"></i> Prova Emprestada</p>
+                                    <p class="text-[10px] text-slate-500 leading-relaxed">
+                                        Aproveitamento do laudo oficial do processo paradigmático nº 1031894-75.2017.8.26.0100 (TJSP), atestando a correção dos cálculos auditados pela KPMG e Deloitte.
+                                    </p>
+                                </div>
+                                <div class="bg-white dark:bg-navy-850 p-3 rounded-lg border border-slate-200 dark:border-navy-750 shadow-xs">
+                                    <p class="font-bold text-navy-800 dark:text-slate-300 flex items-center gap-1.5 mb-1"><i class="fa-solid fa-calculator"></i> Perícia Atuarial Direta</p>
+                                    <p class="text-[10px] text-slate-500 leading-relaxed">
+                                        Subsidiariamente, solicitação de perícia complexa conduzida por profissional credenciado no IBA (Instituto Brasileiro de Atuários).
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                default:
+                    return ''; // Default empty widget
+            }
+        }
+
+        // Update Details view on right side dynamically
+        function updateDetailView(id) {
+            const item = tesesData.find(t => t.id === id);
+            const container = document.getElementById('detail-content');
+            
+            // Set tag label
+            document.getElementById('detail-tag').textContent = `TESE ${item.id}`;
+
+            let argumentsHtml = '';
+            item.arguments.forEach(arg => {
+                argumentsHtml += `
+                    <li class="flex items-start gap-2.5 text-xs text-slate-700 dark:text-slate-300 leading-relaxed">
+                        <i class="fa-regular fa-circle-dot text-amber-600 dark:text-amber-400 mt-1 shrink-0 text-[10px]"></i>
+                        <span>${arg}</span>
+                    </li>
+                `;
+            });
+
+            const visualWidgetHtml = renderVisualWidget(item.visualType, item);
+
+            container.innerHTML = `
+                <!-- Title Header -->
+                <div class="space-y-1">
+                    <h3 class="text-base sm:text-lg font-extrabold text-navy-800 dark:text-white leading-tight">${item.title}</h3>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 italic">${item.summary}</p>
+                </div>
+
+                <!-- Ementa Highlight -->
+                <div class="bg-slate-50 dark:bg-navy-800/40 p-3.5 rounded-lg border-l-4 border-amber-500 text-xs italic text-slate-600 dark:text-slate-300 leading-relaxed shadow-xs">
+                    " ${item.ementaText} "
+                </div>
+
+                <!-- Legal Citations & Precedent Cards -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                    <div class="bg-white dark:bg-navy-850 p-3 rounded-lg border border-slate-200 dark:border-navy-750 shadow-xs">
+                        <span class="text-[8px] font-bold text-slate-400 uppercase tracking-widest block mb-1">Fundamento Regulatório / Legal</span>
+                        <p class="text-xs font-bold text-navy-800 dark:text-slate-300">${item.legalBasis}</p>
+                    </div>
+                    <div class="bg-white dark:bg-navy-850 p-3 rounded-lg border border-slate-200 dark:border-navy-750 shadow-xs">
+                        <span class="text-[8px] font-bold text-slate-400 uppercase tracking-widest block mb-1">Precedente Relevante / Jurisprudência</span>
+                        <p class="text-xs font-bold text-amber-700 dark:text-amber-400">${item.precedent}</p>
+                    </div>
+                </div>
+
+                <!-- Visual Diagram Frame -->
+                ${visualWidgetHtml}
+
+                <!-- Key Arguments list -->
+                <div class="space-y-2">
+                    <h4 class="text-xs font-bold text-slate-900 dark:text-white border-b border-slate-100 dark:border-navy-800 pb-1 flex items-center gap-1.5">
+                        <i class="fa-solid fa-list-check text-navy-600 dark:text-navy-400"></i> Síntese da Argumentação Jurídica
+                    </h4>
+                    <ul class="space-y-2.5">
+                        ${argumentsHtml}
+                    </ul>
+                </div>
+
+                <!-- Literal Quote from Content -->
+                <div class="space-y-1.5 pt-2">
+                    <span class="text-[9px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest block">Trecho de Destaque da Contestação</span>
+                    <blockquote class="p-3 bg-slate-50/80 dark:bg-navy-800/30 text-xs italic text-slate-500 dark:text-slate-400 border-l-2 border-slate-300 dark:border-navy-700 leading-relaxed">
+                        ${item.literalQuote}
+                    </blockquote>
+                </div>
+            `;
+            
+            // Scroll right container back to top smoothly on change
+            container.scrollTop = 0;
+        }
+
+        // Copy Citation logic
+        function copyCurrentTese() {
+            const currentItem = tesesData.find(t => t.id === selectedTeseId);
+            if (!currentItem) return;
+
+            const textToCopy = `TESE ${currentItem.id}: ${currentItem.title}\n\nEMENTA:\n"${currentItem.ementaText}"\n\nFUNDAMENTO LEGAL: ${currentItem.legalBasis}\n\nPRECEDENTE: ${currentItem.precedent}\n\nARGUMENTOS CHAVE:\n${currentItem.arguments.map(arg => `- ${arg}`).join('\n')}\n\nTRECHO DA PEÇA:\n${currentItem.literalQuote}`;
+
+            // Robust document-based fallback for copy
+            const textarea = document.createElement('textarea');
+            textarea.value = textToCopy;
+            textarea.style.position = 'fixed'; // Avoid scrolling to bottom
+            document.body.appendChild(textarea);
+            textarea.select();
+            
+            try {
+                document.execCommand('copy');
+                showToast("Copiado com sucesso para a área de transferência!");
+            } catch (err) {
+                console.error('Falha ao copiar conteúdo', err);
+                showToast("Não foi possível copiar. Por favor, tente selecionar manualmente.");
+            }
+            
+            document.body.removeChild(textarea);
+        }
+
+        // Toast Messages Trigger
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-message').textContent = msg;
+            
+            toast.classList.remove('translate-y-10', 'opacity-0', 'pointer-events-none');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-10', 'opacity-0', 'pointer-events-none');
+            }, 3000);
+        }
+
+        // Modal triggers
+        function openModal(id) {
+            document.getElementById(id).classList.remove('hidden');
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
