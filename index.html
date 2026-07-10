@@ -13,21 +13,30 @@
                 extend: {
                     colors: {
                         navy: {
-                            50: '#f0f4f8',
-                            100: '#d9e2ec',
-                            200: '#bcccdc',
-                            300: '#9fb3c8',
-                            400: '#829ab1',
-                            500: '#627d98',
-                            600: '#486581',
-                            700: '#334e68',
-                            800: '#102a43',
-                            900: '#0b1b2d',
+                            50: '#eef2ff',
+                            100: '#e0e7ff',
+                            200: '#c7d2fe',
+                            300: '#a5b4fc',
+                            400: '#818cf8',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                            750: '#3730a3',
+                            800: '#312e81',
+                            850: '#27245f',
+                            900: '#1e1b4b',
                         },
                         amber: {
-                            500: '#d97706',
-                            600: '#b45309',
-                            700: '#78350f',
+                            50: '#ecfdf5',
+                            100: '#d1fae5',
+                            200: '#a7f3d0',
+                            300: '#6ee7b7',
+                            400: '#34d399',
+                            500: '#10b981',
+                            600: '#059669',
+                            700: '#047857',
+                            900: '#064e3b',
+                            950: '#022c22',
                         }
                     }
                 }
@@ -37,6 +46,11 @@
     <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            overflow-x: hidden;
+        }
+
         .custom-scrollbar::-webkit-scrollbar {
             width: 6px;
             height: 6px;
@@ -53,14 +67,14 @@
         }
     </style>
 </head>
-<body class="bg-slate-50 dark:bg-navy-900 text-slate-800 dark:text-slate-100 min-h-screen flex flex-col transition-colors duration-200">
+<body class="bg-slate-50 dark:bg-navy-900 text-slate-800 dark:text-slate-100 min-h-screen flex flex-col transition-colors duration-200 overflow-x-hidden">
 
     <!-- TOP HEADER BAR -->
     <header class="border-b border-slate-200 dark:border-navy-800 bg-white dark:bg-navy-850 sticky top-0 z-40 shadow-sm backdrop-blur-md bg-opacity-95 dark:bg-opacity-95">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-wrap items-center justify-between gap-4">
             <div class="flex items-center gap-3">
-                <div class="p-2 bg-navy-800 text-white rounded-lg shadow-md">
-                    <i class="fa-solid fa-scale-balanced text-xl"></i>
+                <div class="p-2 bg-white rounded-lg border border-slate-200 shadow-sm shrink-0">
+                    <img src="./assets/complete-logo.png" alt="Logo CAW" class="h-10 w-auto" />
                 </div>
                 <div>
                     <h1 class="text-lg font-bold text-navy-800 dark:text-white tracking-tight flex items-center gap-2">
@@ -71,11 +85,6 @@
             </div>
             
             <div class="flex items-center gap-3">
-                <!-- Theme Toggle -->
-                <button onclick="toggleDarkMode()" class="p-2 text-slate-500 hover:text-navy-800 dark:text-slate-400 dark:hover:text-white rounded-lg hover:bg-slate-100 dark:hover:bg-navy-800 transition" title="Alternar Modo Escuro/Claro">
-                    <i id="theme-icon" class="fa-solid fa-moon text-lg"></i>
-                </button>
-                <div class="h-6 w-px bg-slate-200 dark:bg-navy-800"></div>
                 <!-- Action Button -->
                 <button onclick="openModal('modal-info')" class="text-xs bg-navy-800 hover:bg-navy-700 text-white dark:bg-slate-100 dark:hover:bg-slate-200 dark:text-navy-900 font-semibold py-2 px-3.5 rounded-lg shadow transition flex items-center gap-2">
                     <i class="fa-solid fa-file-invoice"></i> Ficha Técnica
@@ -106,10 +115,10 @@
         </section>
 
         <!-- TWO-COLUMN WORKSPACE -->
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start min-w-0">
             
             <!-- LEFT COLUMN: INDEX & RADIO BUTTON SELECTORS -->
-            <div class="lg:col-span-5 flex flex-col gap-4">
+            <div class="lg:col-span-5 flex flex-col gap-4 min-w-0">
                 
                 <!-- Search and Stats -->
                 <div class="bg-white dark:bg-navy-850 p-4 rounded-xl border border-slate-200 dark:border-navy-800 shadow-sm flex items-center justify-between gap-3">
@@ -121,13 +130,13 @@
                 </div>
 
                 <!-- Radio Cards Container -->
-                <div id="radio-cards-container" class="space-y-3 max-h-[640px] overflow-y-auto pr-1 custom-scrollbar">
+                <div id="radio-cards-container" class="space-y-3 max-h-[640px] overflow-y-auto overflow-x-hidden pr-1 custom-scrollbar">
                     <!-- Cards will be generated by JS -->
                 </div>
             </div>
 
             <!-- RIGHT COLUMN: DETAILED ANALYSIS PANEL -->
-            <div class="lg:col-span-7 bg-white dark:bg-navy-850 rounded-xl border border-slate-200 dark:border-navy-800 shadow-md min-h-[500px] flex flex-col sticky top-20 transition-colors duration-200">
+            <div class="lg:col-span-7 bg-white dark:bg-navy-850 rounded-xl border border-slate-200 dark:border-navy-800 shadow-md min-h-[500px] min-w-0 flex flex-col sticky top-20 transition-colors duration-200 overflow-x-hidden">
                 
                 <!-- Top Status Header of Detail Pane -->
                 <div class="border-b border-slate-150 dark:border-navy-800 px-6 py-4 flex items-center justify-between bg-slate-50/50 dark:bg-navy-850/50">
@@ -142,7 +151,7 @@
                 </div>
 
                 <!-- Dynamic Content Area -->
-                <div id="detail-content" class="p-6 flex-1 flex flex-col gap-5 overflow-y-auto max-h-[650px] custom-scrollbar">
+                <div id="detail-content" class="p-6 flex-1 flex flex-col gap-5 overflow-y-auto overflow-x-hidden max-h-[650px] custom-scrollbar break-words">
                     <!-- Populated dynamically via JS -->
                 </div>
                 
@@ -408,24 +417,6 @@
         window.onload = function() {
             renderRadioCards();
             updateDetailView(1);
-            
-            // Check dynamic system dark mode preference
-            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                document.documentElement.classList.add('dark');
-                document.getElementById('theme-icon').className = "fa-solid fa-sun text-lg text-amber-400";
-            }
-        }
-
-        function toggleDarkMode() {
-            const html = document.documentElement;
-            const icon = document.getElementById('theme-icon');
-            if (html.classList.contains('dark')) {
-                html.classList.remove('dark');
-                icon.className = "fa-solid fa-moon text-lg";
-            } else {
-                html.classList.add('dark');
-                icon.className = "fa-solid fa-sun text-lg text-amber-400";
-            }
         }
 
         // Render Sidebar Left Lists
@@ -716,29 +707,29 @@
                     return `
                         <div class="bg-slate-50 dark:bg-navy-800/50 p-4 rounded-xl border border-slate-100 dark:border-navy-800/80">
                             <p class="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-3 text-center">Faixas Etárias & Balizas de Limite da ANS</p>
-                            <div class="overflow-x-auto">
-                                <table class="w-full text-[10px] text-left border-collapse bg-white dark:bg-navy-850 rounded-lg overflow-hidden border border-slate-200 dark:border-navy-750">
+                            <div class="w-full">
+                                <table class="w-full table-fixed text-[10px] text-left border-collapse bg-white dark:bg-navy-850 rounded-lg overflow-hidden border border-slate-200 dark:border-navy-750">
                                     <thead>
                                         <tr class="bg-slate-100 dark:bg-navy-800 text-slate-700 dark:text-slate-300 font-bold border-b border-slate-200 dark:border-navy-700">
-                                            <th class="p-2">Regra de Variação</th>
-                                            <th class="p-2">Baliza Reguladora</th>
-                                            <th class="p-2 text-center">Status</th>
+                                            <th class="p-2 break-words">Regra de Variação</th>
+                                            <th class="p-2 break-words">Baliza Reguladora</th>
+                                            <th class="p-2 text-center break-words">Status</th>
                                         </tr>
                                     </thead>
                                     <tbody class="divide-y divide-slate-150 dark:divide-navy-750">
                                         <tr>
-                                            <td class="p-2 font-medium">10 Faixas de Idade</td>
-                                            <td class="p-2">Cumprido nos exatos moldes da RN 563/2022</td>
+                                            <td class="p-2 font-medium break-words">10 Faixas de Idade</td>
+                                            <td class="p-2 break-words">Cumprido nos exatos moldes da RN 563/2022</td>
                                             <td class="p-2 text-center text-green-500 font-bold"><i class="fa-solid fa-circle-check"></i> OK</td>
                                         </tr>
                                         <tr>
-                                            <td class="p-2 font-medium">Última vs. Primeira Faixa</td>
-                                            <td class="p-2">Valor da 10ª faixa não pode superar 6x o valor da 1ª</td>
+                                            <td class="p-2 font-medium break-words">Última vs. Primeira Faixa</td>
+                                            <td class="p-2 break-words">Valor da 10ª faixa não pode superar 6x o valor da 1ª</td>
                                             <td class="p-2 text-center text-green-500 font-bold"><i class="fa-solid fa-circle-check"></i> OK</td>
                                         </tr>
                                         <tr>
-                                            <td class="p-2 font-medium">Variação Acumulada</td>
-                                            <td class="p-2">Soma da 7ª à 10ª faixas não pode superar a da 1ª à 7ª</td>
+                                            <td class="p-2 font-medium break-words">Variação Acumulada</td>
+                                            <td class="p-2 break-words">Soma da 7ª à 10ª faixas não pode superar a da 1ª à 7ª</td>
                                             <td class="p-2 text-center text-green-500 font-bold"><i class="fa-solid fa-circle-check"></i> OK</td>
                                         </tr>
                                     </tbody>
