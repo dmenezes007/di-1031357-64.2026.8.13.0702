@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dossiê: A Desconstrução do Falso Coletivo</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/complete-logo-BD4V4EHZ.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/complete-logo-BD4V4EHZ.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/complete-logo-BD4V4EHZ.png">
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Fonte base: Inter para toda a interface e conteúdo textual -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome para ícones conceituais de alta precisão -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Configuração de Extensão do Tailwind -->
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            navy: {
+              50: '#f8fafc',
+              100: '#f1f5f9',
+              200: '#e2e8f0',
+              300: '#cbd5e1',
+              400: '#94a3b8',
+              500: '#64748b',
+              600: '#475569',
+              700: '#334155',
+              750: '#253244',
+              800: '#1e293b',
+              900: '#0f172a',
+              950: '#020617',
+            },
+            accent: {
+              light: '#eef2ff',
+              border: '#e0e7ff',
+              DEFAULT: 'rgb(79 70 229 / var(--tw-text-opacity, 1))',
+              hover: '#4338ca',
+            },
+            rose: {
+              50: '#fff1f2',
+              600: '#e11d48',
+            },
+            green: {
+              600: '#16a34a',
+              700: '#15803d',
+            },
+            amber: {
+              50: '#fffbeb',
+              600: '#d97706',
+            },
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            serif: ['Inter', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Estilização Adicional para Fontes e Scrollbars -->
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    .text-serif-italic {
+      font-family: 'Inter', sans-serif;
+      font-style: italic;
+    }
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 3px;
+    }
+    .dark ::-webkit-scrollbar-thumb {
+      background: #475569;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+  </style>
+
+  <!-- Suporte de fórmulas matemáticas simples utilizando KaTeX (via CDN) com scripts adiados (defer) para evitar erros de inicialização -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+</head>
+<body class="bg-slate-50 dark:bg-navy-950 text-slate-800 dark:text-slate-200 min-h-screen flex flex-col transition-colors duration-300">
+
+  <!-- ================= HERO SECTION (SUBSTITUI O CABEÇALHO) ================= -->
+  <section class="bg-gradient-to-br from-navy-900 to-navy-950 text-white py-12 px-4 sm:px-6 lg:px-8 border-b border-navy-800 relative overflow-hidden shadow-lg">
+    <!-- Efeito Sutil de Fundo -->
+    <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#4f46e5_1px,transparent_1px)] [background-size:16px_16px]"></div>
+    
+    <div class="max-w-7xl mx-auto flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 relative z-10">
+      
+      <!-- Lado Esquerdo: Conteúdo Editorial -->
+      <div class="max-w-3xl">
+        <div class="mb-4 inline-flex items-center gap-3 rounded-xl border border-indigo-100 bg-white/95 px-3 py-2 shadow-sm">
+          <img src="/assets/complete-logo-BD4V4EHZ.png" alt="Logo CAW" class="h-8 w-auto" loading="lazy">
+          <span class="text-xs font-semibold text-accent tracking-wide">CAW Parceria Sustentável</span>
+        </div>
+        <div class="flex items-center space-x-2 mb-3">
+          <span class="bg-accent text-white text-[10px] font-extrabold uppercase tracking-widest px-2.5 py-1 rounded">Dossiê Estratégico</span>
+          <span class="text-slate-400 text-xs tracking-wider">SulAmérica Saúde • Contencioso Massificado de Alta Performance</span>
+        </div>
+        
+        <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white leading-tight">
+          A Desconstrução do <span class="text-serif-italic text-accent font-light tracking-wide italic">Falso Coletivo</span>
+        </h1>
+        
+        <p class="mt-4 text-sm sm:text-base text-slate-300 leading-relaxed font-light">
+          A presente análise técnica e atuarial visa desmistificar a tese oportunista de fragmentação regulatória e hibridismo utilitarista. Demonstra-se, de forma analítica, a higidez das apólices coletivas de perfil familiar em planos <span class="font-semibold text-white">PME</span>, a preservação do mutualismo e a conformidade regulatória perante os normativos imperativos da <span class="font-semibold text-accent">ANS</span>.
+        </p>
+      </div>
+
+      <!-- Lado Direito: Controles Globais e Ficha Técnica -->
+      <div class="flex sm:flex-row flex-col gap-3 lg:self-center w-full lg:w-auto">
+        <!-- Botão Ficha Técnica -->
+        <button onclick="openTechSpecs()" class="px-5 py-3 text-xs font-bold text-white hover:text-accent flex items-center justify-center gap-2 border border-slate-700 hover:border-accent rounded-xl transition-all duration-300 bg-navy-900/60 shadow-lg">
+          <i class="fa-solid fa-circle-info text-accent"></i>
+          <span>Ficha Técnica do Dossiê</span>
+        </button>
+
+        <!-- Botão Dark Mode -->
+        <button onclick="toggleDarkMode()" class="px-4 py-3 text-slate-300 hover:text-white border border-slate-700 rounded-xl bg-navy-900/60 transition-all duration-300 flex items-center justify-center shadow-lg" title="Alternar tema">
+          <i id="theme-icon" class="fa-solid fa-moon text-sm"></i>
+          <span class="ml-2 sm:hidden text-xs font-bold">Alternar Tema</span>
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= ÁREA DE CONTEÚDO PRINCIPAL (WORKSPACE) ================= -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col md:flex-row gap-8">
+    
+    <!-- COLUNA ESQUERDA: NAVEGAÇÃO E SELEÇÃO DE TESES -->
+    <section class="w-full md:w-5/12 lg:w-4/12 flex flex-col gap-4 h-full">
+      <!-- Painel de Busca -->
+      <div class="bg-white dark:bg-navy-900 p-5 rounded-2xl shadow-sm border border-slate-200 dark:border-navy-800/60">
+        <label for="search-input" class="block text-xs font-bold uppercase text-slate-500 dark:text-slate-400 tracking-wider mb-2">Filtrar Teses de Defesa</label>
+        <div class="relative">
+          <input 
+            type="text" 
+            id="search-input" 
+            oninput="filterTheses()"
+            placeholder="Buscar por súmula, lei, palavra-chave..." 
+            class="w-full pl-10 pr-4 py-2.5 text-sm bg-slate-50 dark:bg-navy-950 border border-slate-200 dark:border-navy-800 rounded-xl focus:outline-none focus:ring-1 focus:ring-accent focus:border-accent text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-navy-500 transition-all"
+          >
+          <div class="absolute left-3.5 top-3 text-slate-400 dark:text-navy-500">
+            <i class="fa-solid fa-magnifying-glass text-sm"></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lista de Teses (Cards Interativos) -->
+      <div class="space-y-4 pr-1 flex-1 h-full" id="theses-list-container">
+        <!-- Injetado via Javascript -->
+      </div>
+    </section>
+
+    <!-- COLUNA DIREITA: VISUALIZADOR DETALHADO -->
+    <section class="w-full md:w-7/12 lg:w-8/12 flex flex-col">
+      <div class="bg-white dark:bg-navy-900 rounded-2xl shadow-sm border border-slate-200 dark:border-navy-800/60 p-6 flex flex-col h-full min-h-[550px] relative">
+        
+        <!-- Top Bar do Visualizador: Cópia e Destaque Numérico Principal -->
+        <div class="flex items-center justify-between border-b border-slate-100 dark:border-navy-800/50 pb-4 mb-5">
+          <div class="flex items-center space-x-3">
+            <!-- Destaque Numérico Principal -->
+            <div class="flex items-baseline space-x-1">
+              <span class="text-xs font-bold uppercase tracking-widest text-slate-400 dark:text-navy-500">Tópico</span>
+              <span id="detail-id-num" class="text-serif-italic text-3xl font-bold text-accent italic">01</span>
+            </div>
+            <div class="h-4 w-[1px] bg-slate-200 dark:bg-navy-800"></div>
+            <span class="text-xs text-slate-400 dark:text-slate-500 font-medium tracking-wide">Contencioso de Alto Impacto</span>
+          </div>
+          
+          <button 
+            onclick="copyCurrentTese()" 
+            class="px-4 py-2 bg-slate-100 hover:bg-accent hover:text-white dark:bg-navy-800 dark:hover:bg-accent text-slate-700 dark:text-slate-300 text-xs font-bold rounded-xl flex items-center gap-2 transition-all duration-200 shadow-2xs"
+            title="Copiar tese completa para peticionar"
+          >
+            <i class="fa-regular fa-copy"></i>
+            <span>Copiar Tese</span>
+          </button>
+        </div>
+
+        <!-- Área Dinâmica dos Detalhes da Tese -->
+        <div id="thesis-detail-content" class="flex-1 flex flex-col space-y-6">
+          <!-- Injetado de forma dinâmica por JS -->
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= FICHA TÉCNICA (MODAL) ================= -->
+  <div id="tech-specs-modal" class="fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+    <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+      <div class="fixed inset-0 bg-slate-900/60 dark:bg-navy-950/80 transition-opacity" aria-hidden="true" onclick="closeTechSpecs()"></div>
+
+      <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+
+      <div class="inline-block align-bottom bg-white dark:bg-navy-900 rounded-2xl text-left overflow-hidden shadow-2xl transform transition-all sm:my-8 sm:align-middle sm:max-w-xl sm:w-full border border-slate-200 dark:border-navy-800">
+        <div class="bg-navy-900 dark:bg-navy-950 px-6 py-4 flex items-center justify-between border-b border-navy-800">
+          <div class="flex items-center space-x-2 text-white">
+            <i class="fa-solid fa-gavel text-lg text-accent"></i>
+            <h3 class="text-base font-bold text-serif-italic italic text-slate-200">Parâmetros Atuariais e Processuais</h3>
+          </div>
+          <button onclick="closeTechSpecs()" class="text-slate-400 hover:text-white transition-colors">
+            <i class="fa-solid fa-xmark text-lg"></i>
+          </button>
+        </div>
+        
+        <div class="p-6 space-y-4 text-sm text-slate-600 dark:text-slate-300">
+          <p class="leading-relaxed font-light">
+            O <span class="font-semibold text-slate-800 dark:text-white">Dossiê de Desconstrução</span> atende ao arcabouço normativo da ANS para contratos do segmento corporativo e microempresas (PME), sintetizando decisões dos tribunais superiores e a impossibilidade de interferência na matriz de precificação regulada.
+          </p>
+          
+          <div class="border-t border-slate-100 dark:border-navy-800/80 pt-4 space-y-3">
+            <div class="flex justify-between items-center text-xs">
+              <span class="font-bold text-navy-700 dark:text-slate-400 uppercase tracking-wider">Estratégia Processual</span>
+              <span class="bg-accent-light dark:bg-accent/10 text-accent font-semibold px-2.5 py-0.5 rounded-lg">Defesa de Reajuste Tecnológico</span>
+            </div>
+            <div class="flex justify-between items-center text-xs">
+              <span class="font-bold text-navy-700 dark:text-slate-400 uppercase tracking-wider">Sinergia Tipográfica</span>
+              <span class="font-semibold text-slate-500 dark:text-slate-400">Inter</span>
+            </div>
+            <div class="flex justify-between items-center text-xs">
+              <span class="font-bold text-navy-700 dark:text-slate-400 uppercase tracking-wider">Legislação Chave</span>
+              <span class="font-mono text-slate-500 dark:text-slate-400">RN nº 557/2022 e RN nº 565/2022</span>
+            </div>
+          </div>
+
+          <div class="bg-slate-50 dark:bg-navy-950 p-4 rounded-xl border border-slate-100 dark:border-navy-800/50 text-xs leading-relaxed">
+            <span class="font-bold text-navy-700 dark:text-slate-300 block mb-1">Aplicação Prática no Contencioso</span>
+            Estrutura criada para sustentações orais e confecção ágil de memoriais jurídicos destinados a assessores e magistrados.
+          </div>
+        </div>
+
+        <div class="bg-slate-100 dark:bg-navy-950/60 px-6 py-4 flex justify-end">
+          <button onclick="closeTechSpecs()" class="px-5 py-2.5 bg-navy-700 hover:bg-navy-800 dark:bg-navy-800 dark:hover:bg-navy-750 text-white text-xs font-semibold rounded-xl transition-colors">
+            Fechar Painel
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div id="copy-toast" class="fixed bottom-6 right-6 z-50 bg-slate-900 dark:bg-white text-white dark:text-navy-950 text-xs font-bold py-3.5 px-6 rounded-xl shadow-2xl flex items-center space-x-2.5 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
+    <i class="fa-solid fa-circle-check text-accent dark:text-accent-hover text-lg"></i>
+    <span>Conteúdo da tese copiado para a área de transferência!</span>
+  </div>
+
+  <!-- ================= LOGICA DE COMPORTAMENTO (JAVASCRIPT) ================= -->
+  <script>
+    // 1. DATA OBJECT - INJEÇÃO DE CONTEÚDO JURÍDICO ESPECÍFICO (5 TESES)
+    const tesesData = [
+      {
+        id: 1,
+        title: "Da Legitimidade do Núcleo Familiar e Inexistência de Falso Coletivo",
+        shortTitle: "Legitimidade do Núcleo Familiar e Inexistência de Falso Coletivo",
+        ementa: "O arranjo de núcleo familiar em apólices PME é modalidade lícita e validada pela RN nº 557/2022 da ANS, não configurando fraude ou burla ao sistema.",
+        fundamento: "Art. 5º, § 1º, inciso VII, da RN nº 557/2022 da ANS.",
+        precedente: "STJ, REsp nº 2.233.632/SP (Rel. Min. Marco Buzzi).",
+        arguments: [
+          "A empresa possui atividade econômica regular e ininterrupta.",
+          "A ANS autoriza expressamente a contratação corporativa para a proteção de grupos familiares de sócios."
+        ],
+        citacao: "A simples constatação de que o plano cobre o empresário e seus dependentes evidencia um vínculo societário e familiar legítimo, o que desqualifica por completo a alegação de falso coletivo...",
+        widgetType: "broken-pillars",
+        tags: ["RN 557/22", "STJ REsp", "Licitude PME"]
+      },
+      {
+        id: 2,
+        title: "Da Vedação ao Comportamento Contraditório",
+        shortTitle: "Vedação ao Comportamento Contraditório (Venire Contra)",
+        ementa: "A fruição das vantagens tarifárias e assistenciais corporativas na entrada impede a posterior impugnação do modelo à luz da vedação ao venire contra factum proprium.",
+        fundamento: "Arts. 113, 187 e 422 do Código Civil.",
+        precedente: "Brocardo Nemo auditur propriam turpitudinem allegans (ninguém pode se beneficiar da própria torpeza).",
+        arguments: [
+          "A adesão foi livre e voluntária visando vantagens como mensalidades módicas e mitigação de carências.",
+          "A alegação de 'empresa de fachada' consubstancia a confissão de que o autor concorreu para o ato que tenta invalidar."
+        ],
+        citacao: "[O beneficiário] passa a usufruir das vantagens próprias desse regime contratual... Posteriormente, porém, sustenta em juízo que o vínculo seria meramente formal ou artificial, buscando desconstituir seletivamente apenas os ônus...",
+        widgetType: "timeline",
+        tags: ["Arts. CC", "Boa-Fé Objetiva", "Torpeza"]
+      },
+      {
+        id: 3,
+        title: "Do Hibridismo Utilitarista (Cherry-Picking Regulatório)",
+        shortTitle: "Hibridismo Utilitarista e Cherry-Picking",
+        ementa: "É juridicamente inviável a criação de um regime híbrido (lex tertia) que retenha os preços de entrada do plano empresarial e exija os limites de reajuste do plano individual.",
+        fundamento: "Parecer Jurídico do Ministro Luís Roberto Barroso.",
+        precedente: "Vedação ao Desbalanceamento Institucional (Art. 20 da LINDB).",
+        arguments: [
+          "A tentativa autoral é obter 'o melhor dos dois mundos' sem arcar com as despesas correspondentes.",
+          "Trata-se de seleção oportunista e assimétrica de regras contrárias à integridade atuarial."
+        ],
+        citacao: "Em termos econômicos, essa estratégia corresponds ao cherry-picking regulatório: a seleção oportunista e assimétrica das regras mais favoráveis de regimes jurídicos distintos, sem assumir as contrapartidas que sustentam o equilíbrio do sistema.",
+        widgetType: "cherry-picking",
+        tags: ["Art. 20 LINDB", "Parecer", "Lex Tertia"]
+      },
+      {
+        id: 4,
+        title: "Da Proteção do Mutualismo e Rechaço ao Efeito Free-Rider",
+        shortTitle: "Proteção do Mutualismo e Evitação de Free-Rider",
+        ementa: "A desconstituição isolada dos reajustes transfere coercitivamente os custos da alta complexidade tecnológica aos demais integrantes do pool de risco.",
+        fundamento: "Agrupamento Compulsório estatuído nos Arts. 37 e 38 da RN nº 565/2022 da ANS.",
+        precedente: "Tema Repetitivo 1.016 do STJ e preservação sistêmica.",
+        arguments: [
+          "O sistema opera sob o regime de repartição simples.",
+          "O déficit financeiro individual gerado pela blindagem judicial é compulsoriamente socializado com o restante do agrupamento."
+        ],
+        citacao: "A multiplicação dessas decisões gera uma autêntica 'tragédia dos comuns', exaurindo o fundo mútuo coletivo que protege a totalidade dos segurados...",
+        widgetType: "math-formulas",
+        tags: ["RN 565/22", "Tema 1016 STJ", "Tragédia dos Comuns"]
+      },
+      {
+        id: 5,
+        title: "Da Impossibilidade Fática e Legal de Transmutação Contratual",
+        shortTitle: "Impossibilidade de Transmutação Contratual",
+        ementa: "É fática e juridicamente inviável impor a transmutação para a modalidade individual, sob pena de forçar a operadora a cometer infração administrativa por operar produto não comercializado.",
+        fundamento: "Artigo 19 da RN nº 489 da ANS.",
+        precedente: "STJ, REsp nº 2.180.820/MG.",
+        arguments: [
+          "A SulAmérica não comercializa planos individuais desde o ano de 2005.",
+          "Obrigá-la a criar um produto violaria a livre iniciativa e o equilíbrio de comercialização do setor."
+        ],
+        citacao: "A operadora não está obrigada a disponibilizar tal modalidade na hipótese de não comercializar esse tipo de produto no mercado.",
+        widgetType: "individual-plan",
+        tags: ["RN 489 ANS", "Livre Iniciativa", "Comercialização"]
+      }
+    ];
+
+    let currentSelectedId = 1;
+
+    // 2. INICIALIZAÇÃO DA APLICAÇÃO
+    window.onload = function() {
+      renderThesesList(tesesData);
+      selectTese(1);
+
+      // Renderiza as fórmulas matemáticas em toda a página de forma 100% segura após o carregamento completo do DOM
+      if (typeof renderMathInElement !== 'undefined') {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ],
+          throwOnError: false
+        });
+      }
+    };
+
+    // Formata o ID numérico com dois dígitos (01, 02...)
+    function formatIdNum(id) {
+      return id < 10 ? `0${id}` : id;
+    }
+
+    // 3. RENDERIZAÇÃO DA LISTA DE TESES (COLUNA ESQUERDA)
+    function renderThesesList(data) {
+      const container = document.getElementById("theses-list-container");
+      container.innerHTML = "";
+      
+      if (data.length === 0) {
+        container.innerHTML = `
+          <div class="text-center py-8 text-slate-400 dark:text-navy-500 text-sm font-semibold">
+            <i class="fa-solid fa-folder-open text-2xl mb-2 block text-slate-300 dark:text-navy-700"></i>
+            Nenhuma tese localizada.
+          </div>
+        `;
+        return;
+      }
+
+      data.forEach(tese => {
+        const isSelected = tese.id === currentSelectedId;
+        const activeClass = isSelected 
+          ? "border-accent bg-accent-light/50 dark:bg-accent/5 ring-1 ring-accent/30 shadow-md" 
+          : "border-slate-200 dark:border-navy-800/80 hover:border-slate-300 dark:hover:border-navy-700 bg-white dark:bg-navy-900 shadow-2xs";
+
+        const titleColorClass = isSelected ? "text-navy-700 dark:text-white" : "text-slate-700 dark:text-slate-300";
+
+        const card = document.createElement("div");
+        card.className = `p-5 rounded-2xl border-l-4 cursor-pointer transition-all duration-300 relative overflow-hidden group ${activeClass}`;
+        card.setAttribute("onclick", `selectTese(${tese.id})`);
+        
+        // Tags render
+        let tagsHtml = tese.tags.map(t => 
+          `<span class="text-[9px] px-2 py-0.5 rounded bg-slate-100 dark:bg-navy-800 text-slate-500 dark:text-slate-400 font-bold tracking-tight">${t}</span>`
+        ).join(" ");
+
+        card.innerHTML = `
+          <div class="flex justify-between items-start mb-2.5">
+            <!-- NUMERAÇÃO DE CADA TEMA EM DESTAQUE (CARD) -->
+            <span class="text-serif-italic text-2xl font-bold italic text-accent tracking-wider select-none opacity-90 group-hover:scale-110 transition-transform duration-300">
+              § ${formatIdNum(tese.id)}
+            </span>
+            <div class="flex space-x-1">${tagsHtml}</div>
+          </div>
+          <h3 class="text-sm font-bold leading-snug ${titleColorClass}">${tese.shortTitle}</h3>
+          <p class="text-xs text-slate-400 dark:text-slate-500 mt-2 line-clamp-2 leading-relaxed">${tese.ementa}</p>
+        `;
+        
+        container.appendChild(card);
+      });
+    }
+
+    // 4. FILTRAR TESES (CAMPO DE BUSCA)
+    function filterTheses() {
+      const query = document.getElementById("search-input").value.toLowerCase();
+      const filtered = tesesData.filter(t => 
+        t.title.toLowerCase().includes(query) ||
+        t.ementa.toLowerCase().includes(query) ||
+        t.fundamento.toLowerCase().includes(query) ||
+        t.precedente.toLowerCase().includes(query) ||
+        t.tags.some(tag => tag.toLowerCase().includes(query))
+      );
+      renderThesesList(filtered);
+    }
+
+    // 5. SELECIONAR E EXIBIR DETALHES DA TESE (COLUNA DIREITA)
+    function selectTese(id) {
+      currentSelectedId = id;
+      
+      // Atualiza visual de seleção nos cards esquerdos
+      const query = document.getElementById("search-input").value.toLowerCase();
+      const filtered = query ? tesesData.filter(t => 
+        t.title.toLowerCase().includes(query) ||
+        t.ementa.toLowerCase().includes(query) ||
+        t.fundamento.toLowerCase().includes(query) ||
+        t.precedente.toLowerCase().includes(query) ||
+        t.tags.some(tag => tag.toLowerCase().includes(query))
+      ) : tesesData;
+      
+      renderThesesList(filtered);
+
+      const tese = tesesData.find(t => t.id === id);
+      if (!tese) return;
+
+      // Update Top Numeral Destaque
+      document.getElementById("detail-id-num").innerText = formatIdNum(tese.id);
+
+      const detailContainer = document.getElementById("thesis-detail-content");
+      detailContainer.innerHTML = `
+        <!-- Título Principal -->
+        <div>
+          <h2 class="text-2xl font-extrabold text-navy-700 dark:text-white leading-snug mb-3">
+            ${tese.title}
+          </h2>
+          <!-- Ementa em itálico com a mesma família Inter -->
+          <div class="bg-slate-50 dark:bg-navy-950 p-5 rounded-2xl border border-slate-100 dark:border-navy-800/40 relative">
+            <span class="absolute top-2 left-3.5 text-[8px] font-extrabold text-accent uppercase tracking-widest">Ementa de Defesa</span>
+            <p class="text-serif-italic text-lg text-slate-700 dark:text-slate-300 italic pt-4 leading-relaxed font-light">
+              "${tese.ementa}"
+            </p>
+          </div>
+        </div>
+
+        <!-- Duas colunas para Fundamento e Precedente -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="p-4 bg-slate-50 dark:bg-navy-950 border border-slate-100 dark:border-navy-800/40 rounded-xl">
+            <span class="text-[9px] font-extrabold text-navy-500 dark:text-slate-400 uppercase tracking-widest block mb-1">Fundamento Legal</span>
+            <span class="text-sm font-bold text-navy-700 dark:text-slate-200 block leading-tight">${tese.fundamento}</span>
+          </div>
+          <div class="p-4 bg-slate-50 dark:bg-navy-950 border border-slate-100 dark:border-navy-800/40 rounded-xl">
+            <span class="text-[9px] font-extrabold text-navy-500 dark:text-slate-400 uppercase tracking-widest block mb-1">Precedente Principal</span>
+            <span class="text-sm font-bold text-navy-700 dark:text-slate-200 block leading-tight">${tese.precedente}</span>
+          </div>
+        </div>
+
+        <!-- Argumentos da Operadora -->
+        <div>
+          <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 dark:text-navy-500 block mb-3">Linha Argumentativa</span>
+          <ul class="space-y-2.5">
+            ${tese.arguments.map(arg => `
+              <li class="flex items-start space-x-3 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                <i class="fa-solid fa-circle-check text-accent mt-0.5 flex-shrink-0"></i>
+                <span>${arg}</span>
+              </li>
+            `).join('')}
+          </ul>
+        </div>
+
+        <!-- Citação literal em itálico com a mesma família Inter -->
+        <div class="border-l-4 border-accent pl-5 py-2 my-4 bg-slate-50/40 dark:bg-navy-900/40 rounded-r-2xl">
+          <p class="text-serif-italic text-base text-slate-500 dark:text-slate-400 leading-relaxed font-light">
+            "${tese.citacao}"
+          </p>
+        </div>
+
+        <!-- WIDGET VISUAL INTERATIVO -->
+        <div class="border-t border-slate-100 dark:border-navy-800/60 pt-5">
+          <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 dark:text-navy-500 block mb-3">Demonstração Visual do Tema</span>
+          <div class="bg-slate-50 dark:bg-navy-950 rounded-2xl border border-slate-100 dark:border-navy-800/40 p-5">
+            ${renderWidget(tese.widgetType)}
+          </div>
+        </div>
+      `;
+
+      // Renderiza as novas fórmulas matemáticas inseridas sob demanda de forma localizada no contêiner de detalhes
+      if (typeof renderMathInElement !== 'undefined') {
+        renderMathInElement(detailContainer, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ],
+          throwOnError: false
+        });
+      }
+    }
+
+    // 6. RENDERIZADOR DE WIDGETS CONCEITUAIS
+    function renderWidget(type) {
+      switch (type) {
+        case 'broken-pillars':
+          return `
+            <div class="flex flex-col items-center justify-center py-4">
+              <span class="text-[10px] font-bold text-accent uppercase tracking-widest mb-4">Os Pilares Regulatório-Civilistas do Contrato Coletivo</span>
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 w-full">
+                
+                <div class="flex flex-col items-center bg-white dark:bg-navy-900 border border-slate-200 dark:border-navy-800 p-3 rounded-xl text-center relative group overflow-hidden shadow-2xs">
+                  <div class="absolute -top-1 left-0 w-full h-1 bg-navy-700"></div>
+                  <i class="fa-solid fa-landmark text-lg text-navy-700 dark:text-slate-300 mb-1"></i>
+                  <span class="text-xs font-bold text-slate-700 dark:text-slate-300">Livre Iniciativa</span>
+                  <span class="text-[8px] text-slate-400 dark:text-navy-400 mt-1">Livre Pactuação de Modelos</span>
+                </div>
+
+                <div class="flex flex-col items-center bg-white dark:bg-navy-900 border border-slate-200 dark:border-navy-800 p-3 rounded-xl text-center relative group overflow-hidden shadow-2xs">
+                  <div class="absolute -top-1 left-0 w-full h-1 bg-navy-700"></div>
+                  <i class="fa-solid fa-gavel text-lg text-navy-700 dark:text-slate-300 mb-1"></i>
+                  <span class="text-xs font-bold text-slate-700 dark:text-slate-300">Legalidade</span>
+                  <span class="text-[8px] text-slate-400 dark:text-navy-400 mt-1">Conformidade RN 557</span>
+                </div>
+
+                <div class="flex flex-col items-center bg-white dark:bg-navy-900 border border-slate-200 dark:border-navy-800 p-3 rounded-xl text-center relative group overflow-hidden shadow-2xs">
+                  <div class="absolute -top-1 left-0 w-full h-1 bg-navy-700"></div>
+                  <i class="fa-solid fa-handshake text-lg text-navy-700 dark:text-slate-300 mb-1"></i>
+                  <span class="text-xs font-bold text-slate-700 dark:text-slate-300">Boa-Fé Objetiva</span>
+                  <span class="text-[8px] text-slate-400 dark:text-navy-400 mt-1">Ausência de Comportamento Torpe</span>
+                </div>
+
+                <div class="flex flex-col items-center bg-white dark:bg-navy-900 border border-slate-200 dark:border-navy-800 p-3 rounded-xl text-center relative group overflow-hidden shadow-2xs">
+                  <div class="absolute -top-1 left-0 w-full h-1 bg-navy-700"></div>
+                  <i class="fa-solid fa-scale-balanced text-lg text-navy-700 dark:text-slate-300 mb-1"></i>
+                  <span class="text-xs font-bold text-slate-700 dark:text-slate-300">Equilíbrio</span>
+                  <span class="text-[8px] text-slate-400 dark:text-navy-400 mt-1">Preservação Atuarial</span>
+                </div>
+
+              </div>
+              
+              <div class="mt-4 flex items-center space-x-3 bg-red-50 dark:bg-red-950/20 text-red-700 dark:text-red-400 border border-red-100 dark:border-red-950/40 p-4 rounded-xl text-xs w-full">
+                <i class="fa-solid fa-triangle-exclamation text-lg flex-shrink-0 text-red-500"></i>
+                <span class="leading-relaxed">A presunção sumária de <strong>"falso coletivo"</strong> baseada apenas na contagem de vidas tenta desmembrar todos esses pilares simultaneamente.</span>
+              </div>
+            </div>
+          `;
+
+        case 'timeline':
+          return `
+            <div class="py-2">
+              <span class="text-[10px] font-bold text-accent uppercase tracking-widest text-center block mb-4">Fluxo Temporal da Contradição (Venire Contra Factum Proprium)</span>
+              
+              <div class="relative flex flex-col md:flex-row items-stretch justify-between gap-4 md:gap-2">
+                
+                <!-- Passo 1 -->
+                <div class="flex-1 bg-white dark:bg-navy-900 border border-slate-200 dark:border-navy-800 p-3 rounded-xl flex md:flex-col items-center md:text-center relative shadow-2xs">
+                  <div class="bg-accent text-white w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold md:mb-2 mr-3 md:mr-0 flex-shrink-0 shadow-sm">1</div>
+                  <div>
+                    <h4 class="text-xs font-extrabold text-navy-700 dark:text-slate-200">Ingresso Estratégico</h4>
+                    <p class="text-[10px] text-slate-400 dark:text-navy-400 mt-1">Obtém descontos expressivos e carências reduzidas via CNPJ.</p>
+                  </div>
+                </div>
+
+                <!-- Seta -->
+                <div class="hidden md:flex items-center justify-center text-slate-300 dark:text-navy-700 font-bold px-1">
+                  <i class="fa-solid fa-chevron-right"></i>
+                </div>
+
+                <!-- Passo 2 -->
+                <div class="flex-1 bg-white dark:bg-navy-900 border border-slate-200 dark:border-navy-800 p-3 rounded-xl flex md:flex-col items-center md:text-center relative shadow-2xs">
+                  <div class="bg-accent text-white w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold md:mb-2 mr-3 md:mr-0 flex-shrink-0 shadow-sm">2</div>
+                  <div>
+                    <h4 class="text-xs font-extrabold text-navy-700 dark:text-slate-200">Gozo Prolongado</h4>
+                    <p class="text-[10px] text-slate-400 dark:text-navy-400 mt-1">Usa a rede de alta complexidade médica sem oposição contratual.</p>
+                  </div>
+                </div>
+
+                <!-- Seta -->
+                <div class="hidden md:flex items-center justify-center text-slate-300 dark:text-navy-700 font-bold px-1">
+                  <i class="fa-solid fa-chevron-right"></i>
+                </div>
+
+                <!-- Passo 3 -->
+                <div class="flex-1 bg-red-50 dark:bg-red-950/20 border border-red-200 dark:border-red-950/30 p-3 rounded-xl flex md:flex-col items-center md:text-center relative shadow-2xs">
+                  <div class="bg-red-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold md:mb-2 mr-3 md:mr-0 flex-shrink-0 shadow-sm">3</div>
+                  <div>
+                    <h4 class="text-xs font-extrabold text-red-700 dark:text-red-400">Judicialização Oportunista</h4>
+                    <p class="text-[10px] text-red-500 dark:text-red-400/80 mt-1">Exige o teto de reajuste individual apenas para se eximir do custo do grupo.</p>
+                  </div>
+                </div>
+
+              </div>
+              
+              <div class="mt-4 text-center">
+                <span class="text-serif-italic text-sm text-navy-700 dark:text-slate-300 italic">"Nemo auditur propriam turpitudinem allegans" — Vedação à vantagem sem contrapartida.</span>
+              </div>
+            </div>
+          `;
+
+        case 'cherry-picking':
+          return `
+            <div class="py-2">
+              <span class="text-[10px] font-bold text-accent uppercase tracking-widest text-center block mb-4">A Assimetria do Cherry-Picking Regulatório</span>
+              
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
+                
+                <!-- Bônus (Lado do Autor) -->
+                <div class="bg-emerald-50/60 dark:bg-emerald-950/10 border border-emerald-100 dark:border-emerald-950/30 p-4 rounded-xl shadow-2xs">
+                  <span class="text-[10px] font-extrabold text-emerald-700 dark:text-emerald-400 uppercase block mb-2"><i class="fa-solid fa-check-double mr-1"></i> Benefícios da Modalidade PME</span>
+                  <ul class="space-y-1.5 text-xs text-slate-600 dark:text-slate-400 font-semibold">
+                    <li><i class="fa-solid fa-caret-right text-emerald-500 mr-1"></i> Preço de entrada consideravelmente menor</li>
+                    <li><i class="fa-solid fa-caret-right text-emerald-500 mr-1"></i> Isenção de carências na adesão</li>
+                    <li><i class="fa-solid fa-caret-right text-emerald-500 mr-1"></i> Rede de prestadores de ampla cobertura</li>
+                  </ul>
+                </div>
+
+                <!-- Ônus (Socializado com os outros) -->
+                <div class="bg-red-50/60 dark:bg-red-950/10 border border-red-100 dark:border-red-950/30 p-4 rounded-xl shadow-2xs">
+                  <span class="text-[10px] font-extrabold text-red-700 dark:text-red-400 uppercase block mb-2"><i class="fa-solid fa-triangle-exclamation mr-1"></i> Ônus Lançado à Coletividade</span>
+                  <ul class="space-y-1.5 text-xs text-slate-600 dark:text-slate-400 font-semibold">
+                    <li><i class="fa-solid fa-caret-right text-red-500 mr-1"></i> Subversão técnica do reajuste do pool</li>
+                    <li><i class="fa-solid fa-caret-right text-red-500 mr-1"></i> Substituição arbitrária pelo teto da ANS</li>
+                    <li><i class="fa-solid fa-caret-right text-red-500 mr-1"></i> Queda na receita de cobertura atuarial do fundo</li>
+                  </ul>
+                </div>
+
+              </div>
+
+              <!-- Ícone Central Unbalanced -->
+              <div class="mt-5 flex flex-col items-center justify-center p-4 border border-slate-200 dark:border-navy-800 rounded-xl bg-white dark:bg-navy-900 shadow-2xs">
+                <i class="fa-solid fa-scale-unbalanced text-3xl text-accent animate-pulse mb-2"></i>
+                <h4 class="text-xs font-bold text-navy-700 dark:text-slate-200">A Criação de Regime Híbrido (Lex Tertia)</h4>
+                <p class="text-[10px] text-slate-400 dark:text-navy-400 text-center mt-1">
+                  A quebra unilateral do mutualismo de PME sob teto individual viola frontalmente o Art. 20 da LINDB.
+                </p>
+              </div>
+
+            </div>
+          `;
+
+        case 'math-formulas':
+          return `
+            <div class="py-2">
+              <span class="text-[10px] font-bold text-accent uppercase tracking-widest text-center block mb-3">Modelagem Atuarial do Percentual de Reajuste Único (PRU)</span>
+              
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- Fórmulas KaTeX -->
+                <div class="bg-white dark:bg-navy-900 p-4 rounded-xl border border-slate-200 dark:border-navy-800 flex flex-col items-center justify-center min-h-[120px] shadow-2xs">
+                  <span class="text-[10px] font-bold text-slate-400 dark:text-navy-500 uppercase mb-2">Índice de Sinistralidade (IS)</span>
+                  <div class="text-md font-bold text-navy-700 dark:text-white my-2">
+                    $$IS = \\frac{\\text{Sinistros}}{\\text{Prêmio Neto}} \\ge 70\\%$$
+                  </div>
+                  <span class="text-[9px] text-slate-400 dark:text-navy-400 text-center mt-1">Metodologia auditada por Deloitte/KPMG</span>
+                </div>
+
+                <div class="bg-white dark:bg-navy-900 p-4 rounded-xl border border-slate-200 dark:border-navy-800 flex flex-col items-center justify-center min-h-[120px] shadow-2xs">
+                  <span class="text-[10px] font-bold text-slate-400 dark:text-navy-500 uppercase mb-2">Variação de Custos (PRU)</span>
+                  <div class="text-md font-bold text-navy-700 dark:text-white my-2">
+                    $$PRU = \\text{VCMH} + \\Delta \\text{IRS}$$
+                  </div>
+                  <span class="text-[9px] text-slate-400 dark:text-navy-400 text-center mt-1">Agrupamento linear compulsório (RN 565)</span>
+                </div>
+              </div>
+
+              <div class="mt-4 p-4 bg-blue-50 dark:bg-navy-900 text-slate-700 dark:text-slate-300 border border-blue-100 dark:border-navy-800/80 rounded-xl text-xs leading-relaxed">
+                <i class="fa-solid fa-circle-nodes text-accent mr-1"></i>
+                O <strong>Efeito Free-Rider</strong> ocorre quando decisões judiciais isentam determinados contratantes do reajuste de reequilíbrio, onerando todo o pool remanescente de microempresas.
+              </div>
+            </div>
+          `;
+
+        case 'individual-plan':
+          return `
+            <div class="py-2 text-center">
+              <span class="text-[10px] font-bold text-accent uppercase tracking-widest block mb-4">Análise de Viabilidade Operacional de Transmutação</span>
+              
+              <div class="max-w-md mx-auto bg-white dark:bg-navy-900 border border-slate-200 dark:border-navy-800 rounded-xl overflow-hidden shadow-sm">
+                
+                <!-- Status Bar -->
+                <div class="bg-red-600 px-4 py-2.5 flex items-center justify-between text-white">
+                  <span class="text-xs font-bold tracking-widest"><i class="fa-solid fa-circle-minus mr-1"></i> PRODUTO INDIVIDUAL</span>
+                  <span class="text-[10px] bg-white/20 px-2 py-0.5 rounded font-extrabold uppercase">EXTINTO EM 2005</span>
+                </div>
+
+                <div class="p-4 space-y-3 text-left">
+                  <div class="flex items-start space-x-2 text-xs">
+                    <i class="fa-solid fa-circle-xmark text-red-500 mt-0.5"></i>
+                    <span class="text-slate-600 dark:text-slate-300 leading-normal">A operadora não comercializa produtos individuais há mais de duas décadas.</span>
+                  </div>
+
+                  <div class="flex items-start space-x-2 text-xs">
+                    <i class="fa-solid fa-circle-xmark text-red-500 mt-0.5"></i>
+                    <span class="text-slate-600 dark:text-slate-300 leading-normal">O provimento judicial de transmutação força a operadora a cometer infração de regulação administrativa (RN 489).</span>
+                  </div>
+
+                  <!-- Infraction Notice Box -->
+                  <div class="bg-slate-50 dark:bg-navy-950 p-3.5 rounded-lg border border-slate-100 dark:border-navy-800 text-[11px] text-slate-500 dark:text-slate-400">
+                    <span class="font-bold text-red-600 block mb-1">Risco Regulatório Grave:</span>
+                    A comercialização ou manutenção de produtos sem devido registro ativo perante a agência reguladora acarreta em sanções pecuniárias automáticas de expressiva gravidade.
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          `;
+
+        default:
+          return ``;
+      }
+    }
+
+    // 7. COPIAR TEXTO DA TESE PARA CLIPBOARD (iFrame Guardrail Compliant)
+    function copyCurrentTese() {
+      const tese = tesesData.find(t => t.id === currentSelectedId);
+      if (!tese) return;
+
+      const fullText = `TESE ${tese.id}: ${tese.title}\n\nEMENTA:\n${tese.ementa}\n\nFUNDAMENTO LEGAL:\n${tese.fundamento}\n\nPRECEDENTE PRINCIPAL:\n${tese.precedente}\n\nARGUMENTOS:\n${tese.arguments.map(a => `- ${a}`).join('\n')}\n\nCITAÇÃO LEGAL:\n"${tese.citacao}"`;
+
+      // Fallback para Clipboard em iFrames (execCommand)
+      const textArea = document.createElement("textarea");
+      textArea.value = fullText;
+      textArea.style.position = "fixed";  // evita rolagem da tela
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+
+      try {
+        const successful = document.execCommand('copy');
+        if (successful) {
+          showToast();
+        } else {
+          console.error("Falha ao copiar texto.");
+        }
+      } catch (err) {
+        console.error("Erro no processo de cópia: ", err);
+      }
+
+      document.body.removeChild(textArea);
+    }
+
+    // 8. EXIBIR TOAST NOTIFICATION
+    function showToast() {
+      const toast = document.getElementById("copy-toast");
+      toast.classList.remove("opacity-0", "translate-y-20");
+      toast.classList.add("opacity-100", "translate-y-0");
+
+      setTimeout(() => {
+        toast.classList.remove("opacity-100", "translate-y-0");
+        toast.classList.add("opacity-0", "translate-y-20");
+      }, 3000);
+    }
+
+    // 9. CONTROLE DE MODO ESCURO
+    function toggleDarkMode() {
+      const html = document.documentElement;
+      const themeIcon = document.getElementById("theme-icon");
+      
+      if (html.classList.contains('dark')) {
+        html.classList.remove('dark');
+        themeIcon.classList.remove('fa-sun');
+        themeIcon.classList.add('fa-moon');
+      } else {
+        html.classList.add('dark');
+        themeIcon.classList.remove('fa-moon');
+        themeIcon.classList.add('fa-sun');
+      }
+    }
+
+    // 10. ABERTURA E FECHAMENTO DO MODAL FICHA TÉCNICA
+    function openTechSpecs() {
+      const modal = document.getElementById("tech-specs-modal");
+      modal.classList.remove("hidden");
+    }
+
+    function closeTechSpecs() {
+      const modal = document.getElementById("tech-specs-modal");
+      modal.classList.add("hidden");
+    }
+  </script>
+</body>
+</html>
