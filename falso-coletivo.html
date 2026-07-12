@@ -425,6 +425,35 @@
       }
     }
 
+    function splitFundamentoItems(fundamento) {
+      return fundamento
+        .split(/\s+e\s+(?=Arts?\.)/)
+        .map(item => item.trim())
+        .filter(Boolean);
+    }
+
+    function splitPrecedenteItems(precedente) {
+      const normalized = precedente.replace(/;\s*e\s*<br\s*\/?>/gi, '<br>');
+
+      return normalized
+        .split(/<br\s*\/?>/gi)
+        .map(item => item.trim())
+        .filter(Boolean);
+    }
+
+    function renderAmberList(items) {
+      return `
+        <ul class="space-y-2">
+          ${items.map(item => `
+            <li class="flex items-start gap-2 text-sm text-navy-700 dark:text-slate-200 leading-tight">
+              <span class="mt-1.5 h-1.5 w-1.5 rounded-full bg-amber-600 dark:bg-amber-500 flex-shrink-0"></span>
+              <span>${item}</span>
+            </li>
+          `).join('')}
+        </ul>
+      `;
+    }
+
     // 3. RENDERIZAÇÃO DA LISTA DE TESES (COLUNA ESQUERDA)
     function renderThesesList(data) {
       const container = document.getElementById("theses-list-container");
@@ -550,11 +579,11 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div class="p-4 bg-slate-50 dark:bg-navy-950 border border-slate-100 dark:border-navy-800/40 rounded-xl">
             <span class="text-[9px] font-extrabold text-navy-500 dark:text-slate-400 uppercase tracking-widest block mb-1">Fundamento Normativo</span>
-            <span class="text-sm font-bold text-navy-700 dark:text-slate-200 block leading-tight">${tese.fundamento}</span>
+            ${renderAmberList(splitFundamentoItems(tese.fundamento))}
           </div>
           <div class="p-4 bg-slate-50 dark:bg-navy-950 border border-slate-100 dark:border-navy-800/40 rounded-xl">
             <span class="text-[9px] font-extrabold text-navy-500 dark:text-slate-400 uppercase tracking-widest block mb-1">Precedente Jurisprudencial</span>
-            <span class="text-sm font-bold text-navy-700 dark:text-slate-200 block leading-tight">${tese.precedente}</span>
+            ${renderAmberList(splitPrecedenteItems(tese.precedente))}
           </div>
         </div>
 
