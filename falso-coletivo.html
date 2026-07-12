@@ -311,8 +311,8 @@
     const tesesData = [
       {
         id: 1,
-        title: "Da Legitimidade do Núcleo Familiar e Inexistência de Falso Coletivo",
-        shortTitle: "Da Legitimidade do Núcleo Familiar e Inexistência de Falso Coletivo",
+        title: "Da Legitimidade do Núcleo Familiar",
+        shortTitle: "Da Legitimidade do Núcleo Familiar",
         ementa: "O arranjo de núcleo familiar em apólices PME é modalidade lícita e validada pela RN nº 557/2022 da ANS, não configurando fraude ou burla ao sistema.",
         fundamento: "Art. 5º, § 1º, inciso VII, da RN nº 557/2022 da ANS.",
         precedente: "STJ, REsp nº 2.233.632/SP (Rel. Min. Marco Buzzi).",
@@ -341,8 +341,8 @@
       },
       {
         id: 3,
-        title: "Do Hibridismo Utilitarista (Cherry-Picking Regulatório)",
-        shortTitle: "Do Hibridismo Utilitarista (Cherry-Picking Regulatório)",
+        title: "Do Hibridismo Utilitarista",
+        shortTitle: "Do Hibridismo Utilitarista",
         ementa: "É juridicamente inviável a criação de um regime híbrido (lex tertia) que retenha os preços de entrada do plano empresarial e exija os limites de reajuste do plano individual.",
         fundamento: "Art. 20 da LINDB e Arts. 37 e 38 da RN nº 565/2022 da ANS.",
         precedente: "STJ, REsp nº 2.233.632/SP e REsp nº 1.553.013/SP.",
@@ -356,8 +356,8 @@
       },
       {
         id: 4,
-        title: "Da Proteção do Mutualismo e Rechaço ao Efeito Free-Rider",
-        shortTitle: "Da Proteção do Mutualismo e Rechaço ao Efeito Free-Rider",
+        title: "Da Proteção do Mutualismo",
+        shortTitle: "Da Proteção do Mutualismo",
         ementa: "A desconstituição isolada dos reajustes transfere coercitivamente os custos da alta complexidade tecnológica aos demais integrantes do pool de risco.",
         fundamento: "Agrupamento Compulsório estatuído nos Arts. 37 e 38 da RN nº 565/2022 da ANS.",
         precedente: "Tema Repetitivo 1.016 do STJ e preservação sistêmica.",
@@ -439,7 +439,7 @@
         
         // Tags render
         let tagsHtml = tese.tags.map(t => 
-          `<span class="text-[9px] px-2 py-0.5 rounded bg-slate-100 dark:bg-navy-800 text-slate-500 dark:text-slate-400 font-bold tracking-tight">${t}</span>`
+          `<span class="text-[9px] px-2 py-0.5 rounded bg-slate-100 dark:bg-navy-800 text-slate-500 dark:text-slate-400 font-bold tracking-tight" style="color: #ffffff; background-color: rgb(79 70 229 / var(--tw-text-opacity, 1));">${t}</span>`
         ).join(" ");
 
         card.innerHTML = `
@@ -512,11 +512,11 @@
         <!-- Duas colunas para Fundamento e Precedente -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div class="p-4 bg-slate-50 dark:bg-navy-950 border border-slate-100 dark:border-navy-800/40 rounded-xl">
-            <span class="text-[9px] font-extrabold text-navy-500 dark:text-slate-400 uppercase tracking-widest block mb-1">Fundamento Legal</span>
+            <span class="text-[9px] font-extrabold text-navy-500 dark:text-slate-400 uppercase tracking-widest block mb-1">Fundamento Normativo</span>
             <span class="text-sm font-bold text-navy-700 dark:text-slate-200 block leading-tight">${tese.fundamento}</span>
           </div>
           <div class="p-4 bg-slate-50 dark:bg-navy-950 border border-slate-100 dark:border-navy-800/40 rounded-xl">
-            <span class="text-[9px] font-extrabold text-navy-500 dark:text-slate-400 uppercase tracking-widest block mb-1">Precedente Principal</span>
+            <span class="text-[9px] font-extrabold text-navy-500 dark:text-slate-400 uppercase tracking-widest block mb-1">Precedente Jurisprudencial</span>
             <span class="text-sm font-bold text-navy-700 dark:text-slate-200 block leading-tight">${tese.precedente}</span>
           </div>
         </div>
