@@ -104,18 +104,36 @@
 </head>
 <body class="bg-slate-50 dark:bg-navy-950 text-slate-800 dark:text-slate-200 min-h-screen flex flex-col transition-colors duration-300">
 
+  <!-- ================= CABEÇALHO BRANCO (LOGO + AÇÕES) ================= -->
+  <header class="bg-white dark:bg-navy-900 border-b border-slate-200 dark:border-navy-800 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+      <div class="inline-flex items-center gap-3">
+        <img src="/assets/complete-logo-BD4V4EHZ.png" alt="Logo CAW" class="h-8 w-auto" loading="lazy" onerror="this.onerror=null;this.src='./assets/complete-logo-BD4V4EHZ.png';">
+      </div>
+
+      <div class="flex sm:flex-row flex-col gap-3 w-full sm:w-auto">
+        <button onclick="openTechSpecs()" class="px-5 py-3 text-xs font-bold text-navy-800 dark:text-slate-100 hover:text-accent flex items-center justify-center gap-2 border border-slate-300 dark:border-navy-700 hover:border-accent rounded-xl transition-all duration-300 bg-white dark:bg-navy-900 shadow-sm">
+          <i class="fa-solid fa-circle-info text-accent"></i>
+          <span>Ficha Técnica do Doissiê</span>
+        </button>
+
+        <button onclick="toggleDarkMode()" class="px-4 py-3 text-slate-600 dark:text-slate-200 hover:text-accent border border-slate-300 dark:border-navy-700 rounded-xl bg-white dark:bg-navy-900 transition-all duration-300 flex items-center justify-center shadow-sm" title="Alternar tema">
+          <i id="theme-icon" class="fa-solid fa-moon text-sm"></i>
+          <span class="ml-2 text-xs font-bold">Modo Claro/Escuro</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
   <!-- ================= HERO SECTION (SUBSTITUI O CABEÇALHO) ================= -->
   <section class="bg-gradient-to-br from-navy-900 to-navy-950 text-white py-12 px-4 sm:px-6 lg:px-8 border-b border-navy-800 relative overflow-hidden shadow-lg">
     <!-- Efeito Sutil de Fundo -->
     <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#4f46e5_1px,transparent_1px)] [background-size:16px_16px]"></div>
     
-    <div class="max-w-7xl mx-auto flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 relative z-10">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 items-center gap-8 relative z-10">
       
       <!-- Lado Esquerdo: Conteúdo Editorial -->
       <div class="max-w-3xl">
-        <div class="mb-4 inline-flex items-center gap-3 rounded-xl px-3 py-2 shadow-sm">
-          <img src="/assets/complete-logo-BD4V4EHZ.png" alt="Logo CAW" class="h-8 w-auto" loading="lazy" onerror="this.onerror=null;this.src='./assets/complete-logo-BD4V4EHZ.png';">
-        </div>
         <div class="flex items-center space-x-2 mb-3">
           <span class="bg-accent text-white text-[10px] font-extrabold uppercase tracking-widest px-2.5 py-1 rounded">Dossiê Estratégico</span>
         </div>
@@ -129,19 +147,9 @@
         </p>
       </div>
 
-      <!-- Lado Direito: Controles Globais e Ficha Técnica -->
-      <div class="flex sm:flex-row flex-col gap-3 lg:self-center w-full lg:w-auto">
-        <!-- Botão Ficha Técnica -->
-        <button onclick="openTechSpecs()" class="px-5 py-3 text-xs font-bold text-white hover:text-accent flex items-center justify-center gap-2 border border-slate-700 hover:border-accent rounded-xl transition-all duration-300 bg-navy-900/60 shadow-lg">
-          <i class="fa-solid fa-circle-info text-accent"></i>
-          <span>Ficha Técnica do Dossiê</span>
-        </button>
-
-        <!-- Botão Dark Mode -->
-        <button onclick="toggleDarkMode()" class="px-4 py-3 text-slate-300 hover:text-white border border-slate-700 rounded-xl bg-navy-900/60 transition-all duration-300 flex items-center justify-center shadow-lg" title="Alternar tema">
-          <i id="theme-icon" class="fa-solid fa-moon text-sm"></i>
-          <span class="ml-2 sm:hidden text-xs font-bold">Alternar Tema</span>
-        </button>
+      <!-- Lado Direito: Imagem de Destaque do Hero -->
+      <div class="w-full flex justify-center lg:justify-end">
+        <img src="/hero-section-img.png" alt="Imagem de destaque do hero" class="w-full max-w-xl h-auto object-contain rounded-2xl shadow-xl" loading="lazy" onerror="this.onerror=null;this.src='./hero-section-img.png';">
       </div>
 
     </div>
