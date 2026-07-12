@@ -411,6 +411,14 @@
       return id < 10 ? `0${id}` : id;
     }
 
+    function limitCardSummary(text, maxLength = 1230) {
+      if (text.length <= maxLength) {
+        return text;
+      }
+
+      return `${text.slice(0, maxLength - 3).trimEnd()}...`;
+    }
+
     function handleTeseCardKeydown(event, id) {
       if (event.key === 'Enter' || event.key === ' ') {
         event.preventDefault();
@@ -472,12 +480,12 @@
                 <h3 class="mt-1 text-base font-extrabold leading-tight ${titleColorClass}">${tese.shortTitle}</h3>
               </div>
             </div>
-            <span class="inline-flex h-10 w-10 items-center justify-center rounded-full border ${isSelected ? 'border-accent/20 bg-accent/10 dark:bg-accent/15' : 'border-slate-200 dark:border-navy-700 bg-white/70 dark:bg-navy-800/80'} transition-colors duration-300">
+            <span class="flex h-10 w-10 min-h-10 min-w-10 flex-shrink-0 items-center justify-center rounded-full border ${isSelected ? 'border-accent/20 bg-accent/10 dark:bg-accent/15' : 'border-slate-200 dark:border-navy-700 bg-white/70 dark:bg-navy-800/80'} transition-colors duration-300 overflow-hidden aspect-square">
               <i class="${iconClass} text-sm transition-colors duration-300"></i>
             </span>
           </div>
           <p class="relative text-[13px] leading-relaxed ${summaryColorClass}" style="display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;">
-            ${tese.ementa}
+            ${limitCardSummary(tese.ementa)}
           </p>
           <div class="relative mt-4 flex items-end justify-between gap-3">
             <div class="flex flex-wrap gap-1.5">${tagsHtml}</div>
