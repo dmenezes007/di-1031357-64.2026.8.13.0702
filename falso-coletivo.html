@@ -773,7 +773,8 @@
       const tese = tesesData.find(t => t.id === currentSelectedId);
       if (!tese) return;
 
-      const fullText = `TESE ${tese.id}: ${tese.title}\n\nEMENTA:\n${tese.ementa}\n\nFUNDAMENTO LEGAL:\n${tese.fundamento}\n\nPRECEDENTE PRINCIPAL:\n${tese.precedente}\n\nARGUMENTOS:\n${tese.arguments.map(a => `- ${a}`).join('\n')}\n\nCITAÇÃO LEGAL:\n"${tese.citacao}"`;
+      const precedenteTextoPlano = tese.precedente.replace(/<br\s*\/?>/gi, '\n');
+      const fullText = `${tese.title}\n\n"${tese.ementa}"\n\nFundamento Normativo\n${tese.fundamento}\n\nPrecedente Jurisprudencial\n${precedenteTextoPlano}\n\nLinha Argumentativa\n${tese.arguments.map(a => `- ${a}`).join('\n')}\n\n"${tese.citacao}"`;
 
       // Fallback para Clipboard em iFrames (execCommand)
       const textArea = document.createElement("textarea");
