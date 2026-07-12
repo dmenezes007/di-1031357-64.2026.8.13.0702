@@ -95,6 +95,23 @@
     ::-webkit-scrollbar-thumb:hover {
       background: #94a3b8;
     }
+
+    @keyframes amberMarkerPulse {
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+      50% {
+        opacity: 0.55;
+        transform: scale(1.28);
+      }
+    }
+
+    .amber-marker-pulse {
+      animation: amberMarkerPulse 1.2s ease-in-out infinite;
+      transform-origin: center;
+    }
   </style>
 
   <!-- Suporte de fórmulas matemáticas simples utilizando KaTeX (via CDN) com scripts adiados (defer) para evitar erros de inicialização -->
@@ -446,7 +463,7 @@
         <ul class="space-y-2">
           ${items.map(item => `
             <li class="flex items-start gap-2 text-sm text-navy-700 dark:text-slate-200 leading-tight">
-              <span class="mt-1.5 h-1.5 w-1.5 rounded-full bg-amber-600 dark:bg-amber-500 flex-shrink-0"></span>
+              <span class="mt-1.5 h-1.5 w-1.5 rounded-full bg-amber-600 dark:bg-amber-500 flex-shrink-0 amber-marker-pulse"></span>
               <span>${item}</span>
             </li>
           `).join('')}
